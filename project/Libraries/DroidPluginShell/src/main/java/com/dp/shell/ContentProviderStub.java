@@ -20,31 +20,37 @@
 **
 **/
 
-package com.morgoo.droidplugin;
-
-import android.app.Application;
-import android.content.Context;
-
-//import me.weishu.reflection.Reflection;
+package com.dp.shell;
 
 /**
- * Created by Andy Zhang(zhangyong232@gmail.com) 2014/12/5.
+ * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/2/12.
  */
-public class PluginApplication extends Application {
+public abstract class ContentProviderStub extends AbstractContentProviderStub {
 
-    private static final String TAG = PluginApplication.class.getSimpleName();
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        PluginHelper.getInstance().applicationOnCreate(getBaseContext());
+    public static class StubP00 extends ContentProviderStub {
     }
 
+    public static class StubP01 extends ContentProviderStub {
+    }
 
-    @Override
-    protected void attachBaseContext(Context base) {
-//        Reflection.unseal(base);
-        PluginHelper.getInstance().applicationAttachBaseContext(base);
-        super.attachBaseContext(base);
+    public static class StubP02 extends ContentProviderStub {
+    }
+
+    public static class StubP03 extends ContentProviderStub {
+    }
+
+    public static class StubP04 extends ContentProviderStub {
+    }
+
+    public static class StubP05 extends ContentProviderStub {
+    }
+
+    public static class StubP06 extends ContentProviderStub {
+    }
+
+    public static class StubP07 extends ContentProviderStub {
+    }
+
+    public static class StubP08 extends ContentProviderStub {
     }
 }

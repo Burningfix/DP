@@ -7,13 +7,10 @@ import android.content.pm.PermissionInfo;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 
-import com.morgoo.helper.Log;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -77,7 +74,7 @@ public class MyActivity extends AppCompatActivity {
             public void run() {
                 try {
                     StringBuilder sb = new StringBuilder();
-                    Log.e(TAG, "===========包权限start===========");
+//                    Log.e(TAG, "===========包权限start===========");
                     Set<String> ps = new TreeSet<String>();
                     for (PackageInfo pkg : pkgs) {
                         if (pkg.permissions != null && pkg.permissions.length > 0) {
@@ -92,7 +89,7 @@ public class MyActivity extends AppCompatActivity {
                         String re = String.format("<uses-permission android:name=\"%s\"/>", permission.name);
                         String ms = String.format("%s,%s,%s,%s,%s,%s,%s,%s", permission.packageName, pkg.applicationInfo.loadLabel(pm), permission.name, permission.group, permission.protectionLevel, permission.loadLabel(pm), permission.loadDescription(pm), re);
                         sb.append(ms).append("\r\n");
-                        Log.e(TAG, "packageName=%s, name=%s group=%s protectionLevel=%s", permission.packageName, permission.name, permission.group, permission.protectionLevel);
+//                        Log.e(TAG, "packageName=%s, name=%s group=%s protectionLevel=%s", permission.packageName, permission.name, permission.group, permission.protectionLevel);
                     }
 
                     FileWriter w = null;
@@ -110,7 +107,7 @@ public class MyActivity extends AppCompatActivity {
                             }
                         }
                     }
-                    Log.e(TAG, "===========包权限end===========");
+//                    Log.e(TAG, "===========包权限end===========");
                 } catch (NameNotFoundException e) {
                     e.printStackTrace();
                 }

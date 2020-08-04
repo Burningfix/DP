@@ -9,14 +9,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.support.v4.app.ListFragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,12 +22,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.morgoo.droidplugin.pm.PluginManager;
-import com.morgoo.helper.Log;
-
-import java.util.List;
 
 public class InstalledFragment extends ListFragment implements ServiceConnection {
 
@@ -51,10 +42,10 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
             Intent intent = pm.getLaunchIntentForPackage(item.packageInfo.packageName);
             if (intent != null) {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                Log.i("DroidPlugin", "start " + item.packageInfo.packageName + "@" + intent);
+//                Log.i("DroidPlugin", "start " + item.packageInfo.packageName + "@" + intent);
                 startActivity(intent);
             } else {
-                Log.e("DroidPlugin", "pm " + pm.toString() + " no find intent " + item.packageInfo.packageName);
+//                Log.e("DroidPlugin", "pm " + pm.toString() + " no find intent " + item.packageInfo.packageName);
             }
         } else if (v.getId() == R.id.button3) {
             doUninstall(item);
@@ -68,16 +59,16 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
         builder.setNegativeButton("删除", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (!PluginManager.getInstance().isConnected()) {
-                    Toast.makeText(getActivity(), "服务未连接", Toast.LENGTH_SHORT).show();
-                } else {
-                    try {
-                        PluginManager.getInstance().deletePackage(item.packageInfo.packageName, 0);
-                        Toast.makeText(getActivity(), "删除完成", Toast.LENGTH_SHORT).show();
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                }
+//                if (!PluginManager.getInstance().isConnected()) {
+//                    Toast.makeText(getActivity(), "服务未连接", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    try {
+//                        PluginManager.getInstance().deletePackage(item.packageInfo.packageName, 0);
+//                        Toast.makeText(getActivity(), "删除完成", Toast.LENGTH_SHORT).show();
+//                    } catch (RemoteException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
             }
         });
         builder.setNeutralButton("取消", null);
@@ -93,20 +84,20 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
         new Thread("ApkScanner") {
             @Override
             public void run() {
-                try {
-                    final List<PackageInfo> infos = PluginManager.getInstance().getInstalledPackages(0);
-                    final PackageManager pm = getActivity().getPackageManager();
-                    for (final PackageInfo info : infos) {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                adapter.add(new ApkItem(pm, info, info.applicationInfo.publicSourceDir));
-                            }
-                        });
-                    }
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    final List<PackageInfo> infos = PluginManager.getInstance().getInstalledPackages(0);
+//                    final PackageManager pm = getActivity().getPackageManager();
+//                    for (final PackageInfo info : infos) {
+//                        handler.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                adapter.add(new ApkItem(pm, info, info.applicationInfo.publicSourceDir));
+//                            }
+//                        });
+//                    }
+//                } catch (RemoteException e) {
+//                    e.printStackTrace();
+//                }
 
                 handler.post(new Runnable() {
                     @Override
@@ -179,16 +170,16 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
         setListShown(false);
         getListView().setOnItemClickListener(null);
 
-        if (PluginManager.getInstance().isConnected()) {
-            startLoad();
-        } else {
-            PluginManager.getInstance().addServiceConnection(this);
-        }
+//        if (PluginManager.getInstance().isConnected()) {
+//            startLoad();
+//        } else {
+//            PluginManager.getInstance().addServiceConnection(this);
+//        }
     }
 
     @Override
     public void onDestroy() {
-        PluginManager.getInstance().removeServiceConnection(this);
+//        PluginManager.getInstance().removeServiceConnection(this);
         mMyBroadcastReceiver.unregisterReceiver(getActivity().getApplication());
         super.onDestroy();
     }
@@ -197,8 +188,8 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
 
         void registerReceiver(Context con) {
             IntentFilter f = new IntentFilter();
-            f.addAction(PluginManager.ACTION_PACKAGE_ADDED);
-            f.addAction(PluginManager.ACTION_PACKAGE_REMOVED);
+//            f.addAction(PluginManager.ACTION_PACKAGE_ADDED);
+//            f.addAction(PluginManager.ACTION_PACKAGE_REMOVED);
             f.addDataScheme("package");
             con.registerReceiver(this, f);
         }
@@ -209,30 +200,30 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (PluginManager.ACTION_PACKAGE_ADDED.equals(intent.getAction())) {
-                try {
-                    PackageManager pm = getActivity().getPackageManager();
-                    String pkg = intent.getData().getAuthority();
-                    PackageInfo info = PluginManager.getInstance().getPackageInfo(pkg, 0);
-                    adapter.add(new ApkItem(pm, info, info.applicationInfo.publicSourceDir));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (PluginManager.ACTION_PACKAGE_REMOVED.equals(intent.getAction())) {
-                String pkg = intent.getData().getAuthority();
-                int N = adapter.getCount();
-                ApkItem iremovedItem = null;
-                for (int i = 0; i < N; i++) {
-                    ApkItem item = adapter.getItem(i);
-                    if (TextUtils.equals(item.packageInfo.packageName, pkg)) {
-                        iremovedItem = item;
-                        break;
-                    }
-                }
-                if (iremovedItem != null) {
-                    adapter.remove(iremovedItem);
-                }
-            }
+//            if (PluginManager.ACTION_PACKAGE_ADDED.equals(intent.getAction())) {
+//                try {
+//                    PackageManager pm = getActivity().getPackageManager();
+//                    String pkg = intent.getData().getAuthority();
+//                    PackageInfo info = PluginManager.getInstance().getPackageInfo(pkg, 0);
+//                    adapter.add(new ApkItem(pm, info, info.applicationInfo.publicSourceDir));
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            } else if (PluginManager.ACTION_PACKAGE_REMOVED.equals(intent.getAction())) {
+//                String pkg = intent.getData().getAuthority();
+//                int N = adapter.getCount();
+//                ApkItem iremovedItem = null;
+//                for (int i = 0; i < N; i++) {
+//                    ApkItem item = adapter.getItem(i);
+//                    if (TextUtils.equals(item.packageInfo.packageName, pkg)) {
+//                        iremovedItem = item;
+//                        break;
+//                    }
+//                }
+//                if (iremovedItem != null) {
+//                    adapter.remove(iremovedItem);
+//                }
+//            }
         }
     }
 }

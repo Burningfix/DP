@@ -33,7 +33,7 @@ import com.morgoo.helper.Log;
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/3/13.
  */
-public abstract class AbstractServiceStub extends Service {
+public class AbstractServiceStub extends Service {
     private static final String TAG = "AbstractServiceStub";
 
     private static ServcesManager mCreator = ServcesManager.getDefault();

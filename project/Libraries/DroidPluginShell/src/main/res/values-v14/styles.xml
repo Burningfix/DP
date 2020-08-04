@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
 /*
 **        DroidPlugin Project
 **
@@ -19,32 +21,16 @@
 ** License along with DroidPlugin.  If not, see <http://www.gnu.org/licenses/lgpl.txt>
 **
 **/
-
-package com.morgoo.droidplugin;
-
-import android.app.Application;
-import android.content.Context;
-
-//import me.weishu.reflection.Reflection;
-
-/**
- * Created by Andy Zhang(zhangyong232@gmail.com) 2014/12/5.
- */
-public class PluginApplication extends Application {
-
-    private static final String TAG = PluginApplication.class.getSimpleName();
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        PluginHelper.getInstance().applicationOnCreate(getBaseContext());
-    }
+-->
 
 
-    @Override
-    protected void attachBaseContext(Context base) {
-//        Reflection.unseal(base);
-        PluginHelper.getInstance().applicationAttachBaseContext(base);
-        super.attachBaseContext(base);
-    }
-}
+<resources>
+
+    <style name="DroidPluginTheme" parent="android:Theme.DeviceDefault.Light.NoActionBar" >
+        <item name="android:windowBackground">@drawable/plugin_activity_loading</item>
+    </style>
+
+    <style name="DroidPluginThemeDialog" parent="android:Theme.DeviceDefault.Light.Dialog" >
+        <item name="android:windowBackground">@drawable/plugin_activity_loading</item>
+    </style>
+</resources>

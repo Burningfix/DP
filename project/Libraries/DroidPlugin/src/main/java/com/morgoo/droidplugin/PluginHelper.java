@@ -49,7 +49,7 @@ public class PluginHelper implements ServiceConnection {
 
     private static PluginHelper sInstance = null;
 
-    private PluginHelper() {
+    public PluginHelper() {
     }
 
     public static final PluginHelper getInstance() {

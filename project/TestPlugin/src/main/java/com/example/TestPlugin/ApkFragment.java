@@ -25,14 +25,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.morgoo.droidplugin.pm.PluginManager;
-import com.morgoo.helper.compat.PackageManagerCompat;
+//import com.morgoo.droidplugin.pm.PluginManager;
+//import com.morgoo.helper.compat.PackageManagerCompat;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.morgoo.helper.compat.PackageManagerCompat.*;
+//import static com.morgoo.helper.compat.PackageManagerCompat.*;
 
 public class ApkFragment extends ListFragment implements ServiceConnection {
     private ArrayAdapter<ApkItem> adapter;
@@ -78,11 +78,11 @@ public class ApkFragment extends ListFragment implements ServiceConnection {
                     if (item.installing) {
                         btn.setText("安装中ing");
                     } else {
-                        if (PluginManager.getInstance().isConnected()) {
-                            btn.setText(PluginManager.getInstance().getPackageInfo(item.packageInfo.packageName, 0) != null ? "已经安装" : "安装");
-                        } else {
-                            btn.setText("等待初始化服务");
-                        }
+//                        if (PluginManager.getInstance().isConnected()) {
+//                            btn.setText(PluginManager.getInstance().getPackageInfo(item.packageInfo.packageName, 0) != null ? "已经安装" : "安装");
+//                        } else {
+//                            btn.setText("等待初始化服务");
+//                        }
                     }
                 } catch (Exception e) {
                     btn.setText("安装1");
@@ -128,11 +128,11 @@ public class ApkFragment extends ListFragment implements ServiceConnection {
         setListAdapter(adapter);
         setListShown(false);
         getListView().setOnItemClickListener(null);
-        if (PluginManager.getInstance().isConnected()) {
-            startLoad();
-        } else {
-            PluginManager.getInstance().addServiceConnection(this);
-        }
+//        if (PluginManager.getInstance().isConnected()) {
+//            startLoad();
+//        } else {
+//            PluginManager.getInstance().addServiceConnection(this);
+//        }
     }
 
     @Override
@@ -244,37 +244,37 @@ public class ApkFragment extends ListFragment implements ServiceConnection {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         final ApkItem item = adapter.getItem(position);
-        if (v.getId() == R.id.button2) {
-            if (item.installing) {
-                return;
-            }
-            if (!PluginManager.getInstance().isConnected()) {
-                Toast.makeText(getActivity(), "插件服务正在初始化，请稍后再试。。。", Toast.LENGTH_SHORT).show();
-            }
-            try {
-                if (PluginManager.getInstance().getPackageInfo(item.packageInfo.packageName, 0) != null) {
-                    Toast.makeText(getActivity(), "已经安装了，不能再安装", Toast.LENGTH_SHORT).show();
-                } else {
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            doInstall(item);
-                        }
-                    }.start();
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                try {
-                    PluginManager.getInstance().installPackage(item.apkfile, 0);
-                } catch (RemoteException e1) {
-                    e1.printStackTrace();
-                }
-                adapter.remove(item);
-            }
-        } else if (v.getId() == R.id.button3) {
-            doUninstall(item);
-        }
+//        if (v.getId() == R.id.button2) {
+//            if (item.installing) {
+//                return;
+//            }
+//            if (!PluginManager.getInstance().isConnected()) {
+//                Toast.makeText(getActivity(), "插件服务正在初始化，请稍后再试。。。", Toast.LENGTH_SHORT).show();
+//            }
+//            try {
+//                if (PluginManager.getInstance().getPackageInfo(item.packageInfo.packageName, 0) != null) {
+//                    Toast.makeText(getActivity(), "已经安装了，不能再安装", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    new Thread() {
+//                        @Override
+//                        public void run() {
+//                            doInstall(item);
+//                        }
+//                    }.start();
+//
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                try {
+//                    PluginManager.getInstance().installPackage(item.apkfile, 0);
+//                } catch (RemoteException e1) {
+//                    e1.printStackTrace();
+//                }
+//                adapter.remove(item);
+//            }
+//        } else if (v.getId() == R.id.button3) {
+//            doUninstall(item);
+//        }
     }
 
     private synchronized void doInstall(ApkItem item) {
@@ -286,31 +286,31 @@ public class ApkFragment extends ListFragment implements ServiceConnection {
                 adapter.notifyDataSetChanged();
             }
         });
-        try {
-            final int re = PluginManager.getInstance().installPackage(item.apkfile, 0);
-            item.installing = false;
-
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    switch (re) {
-                        case PluginManager.INSTALL_FAILED_NO_REQUESTEDPERMISSION:
-                            Toast.makeText(getActivity(), "安装失败，文件请求的权限太多", Toast.LENGTH_SHORT).show();
-                            break;
-                        case INSTALL_FAILED_NOT_SUPPORT_ABI:
-                            Toast.makeText(getActivity(), "宿主不支持插件的abi环境，可能宿主运行时为64位，但插件只支持32位", Toast.LENGTH_SHORT).show();
-                            break;
-                        case INSTALL_SUCCEEDED:
-                            Toast.makeText(getActivity(), "安装完成", Toast.LENGTH_SHORT).show();
-                            adapter.notifyDataSetChanged();
-                            break;
-                    }
-
-                }
-            });
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            final int re = PluginManager.getInstance().installPackage(item.apkfile, 0);
+//            item.installing = false;
+//
+//            handler.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    switch (re) {
+//                        case PluginManager.INSTALL_FAILED_NO_REQUESTEDPERMISSION:
+//                            Toast.makeText(getActivity(), "安装失败，文件请求的权限太多", Toast.LENGTH_SHORT).show();
+//                            break;
+//                        case INSTALL_FAILED_NOT_SUPPORT_ABI:
+//                            Toast.makeText(getActivity(), "宿主不支持插件的abi环境，可能宿主运行时为64位，但插件只支持32位", Toast.LENGTH_SHORT).show();
+//                            break;
+//                        case INSTALL_SUCCEEDED:
+//                            Toast.makeText(getActivity(), "安装完成", Toast.LENGTH_SHORT).show();
+//                            adapter.notifyDataSetChanged();
+//                            break;
+//                    }
+//
+//                }
+//            });
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
@@ -324,7 +324,7 @@ public class ApkFragment extends ListFragment implements ServiceConnection {
 
     @Override
     public void onDestroy() {
-        PluginManager.getInstance().removeServiceConnection(this);
+//        PluginManager.getInstance().removeServiceConnection(this);
         super.onDestroy();
     }
 }

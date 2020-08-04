@@ -8,7 +8,8 @@ dependencies {
     implementation 'com.android.support:design:23.1.1'
 
     implementation fileTree(dir: 'libs', include: '*.jar')
-    implementation project(':Libraries:DroidPlugin')
+//    implementation project(':Libraries:DroidPlugin')
+    implementation project(':Libraries:DroidPluginShell')
 }
 
 
@@ -40,6 +41,13 @@ android {
         release {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), "proguard-project.txt"
 //            signingConfig signingConfigs.MySignConfig
+        }
+    }
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src/main/assets', 'src/main/assets/'
+            }
         }
     }
 }

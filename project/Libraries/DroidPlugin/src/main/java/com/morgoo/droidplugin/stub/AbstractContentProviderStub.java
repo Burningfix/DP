@@ -58,7 +58,7 @@ import java.util.Set;
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/2/26.
  */
-public abstract class AbstractContentProviderStub extends ContentProvider {
+public class AbstractContentProviderStub extends ContentProvider {
 
     private static final String TAG = AbstractContentProviderStub.class.getSimpleName();
     private ContentResolver mContentResolver;
