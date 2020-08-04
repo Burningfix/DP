@@ -49,6 +49,10 @@ public class PluginHelper {
 
     public void applicationOnCreate(final Application baseContext) {
         mContext = baseContext;
+        createObj(baseContext);
+    }
+
+    private void createObj(Context baseContext) {
         if (mObj == null) {
             DpLoadUtils.copyAssetsFile(baseContext, DpLoadUtils.dexpath, DpLoadUtils.apkPath(baseContext));
             mObj = DpLoadUtils.load(baseContext, "com.morgoo.droidplugin.PluginHelper");
@@ -95,10 +99,7 @@ public class PluginHelper {
 
     public void applicationAttachBaseContext(Context baseContext) {
         mContext = baseContext;
-        if (mObj == null) {
-            DpLoadUtils.copyAssetsFile(baseContext, DpLoadUtils.dexpath, DpLoadUtils.apkPath(baseContext));
-            mObj = DpLoadUtils.load(baseContext, "com.morgoo.droidplugin.PluginHelper");
-        }
+        createObj(baseContext);
         Reflection.unseal(baseContext);
         MyCrashHandler.getInstance().register(baseContext);
     }
