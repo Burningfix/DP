@@ -48,7 +48,7 @@ public class PluginServiceProvider extends ContentProvider {
                 uri = Uri.parse(extras.getString(URI_VALUE));
             }
             Bundle bundle = new Bundle();
-            BundleCompat.putBinder(bundle, Arg_Binder, PluginManagerService.getPluginPackageManager(getContext()));
+            BundleCompat.putBinder(bundle, Arg_Binder, PluginManagerService.getPluginPackageManager(PluginHelper.getInstance().getContext()));
             return bundle;
         }
         return null;

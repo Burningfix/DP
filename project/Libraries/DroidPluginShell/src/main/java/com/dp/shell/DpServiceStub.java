@@ -23,50 +23,50 @@ package com.dp.shell;
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/2/9.
  */
-public abstract class ServiceStub extends AbstractServiceStub {
+public abstract class DpServiceStub extends DpAbstractServiceStub {
 
 
-    public abstract static class StubP00 extends ServiceStub {
+    public abstract static class StubP00 extends DpServiceStub {
         public static class P00 extends StubP00 {
         }
     }
 
-    public abstract static class StubP01 extends ServiceStub {
+    public abstract static class StubP01 extends DpServiceStub {
         public static class P00 extends StubP01 {
         }
     }
 
-    public abstract static class StubP02 extends ServiceStub {
+    public abstract static class StubP02 extends DpServiceStub {
         public static class P00 extends StubP01 {
         }
     }
 
-    public abstract static class StubP03 extends ServiceStub {
+    public abstract static class StubP03 extends DpServiceStub {
         public static class P00 extends StubP01 {
         }
     }
 
-    public abstract static class StubP04 extends ServiceStub {
+    public abstract static class StubP04 extends DpServiceStub {
         public static class P00 extends StubP01 {
         }
     }
 
-    public abstract static class StubP05 extends ServiceStub {
+    public abstract static class StubP05 extends DpServiceStub {
         public static class P00 extends StubP01 {
         }
     }
 
-    public abstract static class StubP06 extends ServiceStub {
+    public abstract static class StubP06 extends DpServiceStub {
         public static class P00 extends StubP01 {
         }
     }
 
-    public abstract static class StubP07 extends ServiceStub {
+    public abstract static class StubP07 extends DpServiceStub {
         public static class P00 extends StubP01 {
         }
     }
 
-    public abstract static class StubP08 extends ServiceStub {
+    public abstract static class StubP08 extends DpServiceStub {
         public static class P00 extends StubP01 {
         }
     }

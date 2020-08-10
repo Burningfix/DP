@@ -222,7 +222,7 @@
         </provider>
 
         <!--解决Not allowed to start service Intent-->
-        <activity android:name="com.dp.shell.OActivity"
+        <activity android:name="com.dp.shell.DpOActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleInstance"
@@ -232,20 +232,25 @@
             </intent-filter>
         </activity>
 
+        <!--用于写业务上的逻辑-->
+        <service
+            android:name="com.dp.shell.DpMainService"
+            android:label="@string/service_name_plugin_manager_service" />
+
         <!--插件管理服务，提供插件的包管理，进程管理。-->
         <service
-            android:name="com.dp.shell.PluginManagerService"
+            android:name="com.dp.shell.DpPluginManagerService"
             android:label="@string/service_name_plugin_manager_service" />
 
         <provider
-            android:name="com.dp.shell.PluginServiceProvider"
+            android:name="com.dp.shell.DpPluginServiceProvider"
             android:authorities="${applicationId}.plugin.servicemanager" />
 
 
         <!--预注册一些Activity，为了插件使用-->
         <!--第0个进程-->
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$Standard00"
+            android:name="com.dp.shell.DpActivityStub$P00$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -263,7 +268,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -280,7 +285,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -297,7 +302,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -314,7 +319,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -331,7 +336,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -348,7 +353,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -365,7 +370,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -382,7 +387,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -399,7 +404,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -416,7 +421,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -433,7 +438,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -450,7 +455,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P00$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$P00$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -469,7 +474,7 @@
 
 
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$Standard00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -486,7 +491,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -503,7 +508,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -520,7 +525,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -537,7 +542,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -554,7 +559,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -571,7 +576,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -588,7 +593,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -605,7 +610,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -622,7 +627,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -639,7 +644,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -656,7 +661,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -673,7 +678,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P00$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P00$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -691,7 +696,7 @@
         </activity>
 
         <service
-            android:name="com.dp.shell.ServiceStub$StubP00$P00"
+            android:name="com.dp.shell.DpServiceStub$StubP00$P00"
             android:exported="false"
             android:label="@string/stub_name_service">
             <intent-filter>
@@ -708,7 +713,7 @@
 
         <!--第1个进程-->
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$Standard00"
+            android:name="com.dp.shell.DpActivityStub$P01$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -726,7 +731,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -744,7 +749,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -762,7 +767,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -780,7 +785,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -798,7 +803,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -816,7 +821,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -834,7 +839,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -852,7 +857,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -871,7 +876,7 @@
         </activity>
 
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -889,7 +894,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -907,7 +912,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -925,7 +930,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P01$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$P01$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -944,7 +949,7 @@
         </activity>
 
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$Standard00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -962,7 +967,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -980,7 +985,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -998,7 +1003,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1016,7 +1021,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1034,7 +1039,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1052,7 +1057,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1070,7 +1075,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1088,7 +1093,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1106,7 +1111,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1124,7 +1129,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1142,7 +1147,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1160,7 +1165,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P01$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P01$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1180,7 +1185,7 @@
 
 
         <service
-            android:name="com.dp.shell.ServiceStub$StubP01$P00"
+            android:name="com.dp.shell.DpServiceStub$StubP01$P00"
             android:exported="false"
             android:label="@string/stub_name_service"
             android:process=":PluginP01">
@@ -1198,7 +1203,7 @@
 
         <!--第2个进程-->
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$Standard00"
+            android:name="com.dp.shell.DpActivityStub$P02$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1216,7 +1221,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1234,7 +1239,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1252,7 +1257,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1270,7 +1275,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1288,7 +1293,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1306,7 +1311,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1324,7 +1329,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1342,7 +1347,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1360,7 +1365,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1378,7 +1383,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1396,7 +1401,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1414,7 +1419,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P02$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$P02$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1433,7 +1438,7 @@
         </activity>
 
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$Standard00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1451,7 +1456,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1469,7 +1474,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1487,7 +1492,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1505,7 +1510,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1523,7 +1528,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1541,7 +1546,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1559,7 +1564,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1577,7 +1582,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1595,7 +1600,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1613,7 +1618,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1631,7 +1636,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1649,7 +1654,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P02$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P02$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1668,7 +1673,7 @@
         </activity>
 
         <service
-            android:name="com.dp.shell.ServiceStub$StubP02$P00"
+            android:name="com.dp.shell.DpServiceStub$StubP02$P00"
             android:exported="false"
             android:label="@string/stub_name_service"
             android:process=":PluginP02">
@@ -1687,7 +1692,7 @@
 
         <!--第3个进程-->
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$Standard00"
+            android:name="com.dp.shell.DpActivityStub$P03$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1705,7 +1710,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1723,7 +1728,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1741,7 +1746,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1759,7 +1764,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1777,7 +1782,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1795,7 +1800,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1813,7 +1818,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1831,7 +1836,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1849,7 +1854,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1867,7 +1872,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1885,7 +1890,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1903,7 +1908,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P03$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$P03$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1923,7 +1928,7 @@
 
 
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$Standard00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1941,7 +1946,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1959,7 +1964,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1977,7 +1982,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -1995,7 +2000,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2013,7 +2018,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2031,7 +2036,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2049,7 +2054,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2067,7 +2072,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2085,7 +2090,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2103,7 +2108,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2121,7 +2126,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2139,7 +2144,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P03$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P03$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2158,7 +2163,7 @@
         </activity>
 
         <service
-            android:name="com.dp.shell.ServiceStub$StubP03$P00"
+            android:name="com.dp.shell.DpServiceStub$StubP03$P00"
             android:exported="false"
             android:label="@string/stub_name_service"
             android:process=":PluginP03">
@@ -2177,7 +2182,7 @@
 
         <!--第4个进程-->
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$Standard00"
+            android:name="com.dp.shell.DpActivityStub$P04$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2195,7 +2200,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2213,7 +2218,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2231,7 +2236,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2249,7 +2254,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2267,7 +2272,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2285,7 +2290,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2303,7 +2308,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2321,7 +2326,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2339,7 +2344,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2357,7 +2362,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2375,7 +2380,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2393,7 +2398,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P04$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$P04$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2412,7 +2417,7 @@
         </activity>
 
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$Standard00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2430,7 +2435,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2448,7 +2453,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2466,7 +2471,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2484,7 +2489,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2502,7 +2507,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2520,7 +2525,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2538,7 +2543,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2556,7 +2561,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2574,7 +2579,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2592,7 +2597,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2610,7 +2615,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2628,7 +2633,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P04$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P04$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2647,7 +2652,7 @@
         </activity>
 
         <service
-            android:name="com.dp.shell.ServiceStub$StubP04$P00"
+            android:name="com.dp.shell.DpServiceStub$StubP04$P00"
             android:exported="false"
             android:label="@string/stub_name_service"
             android:process=":PluginP04">
@@ -2665,7 +2670,7 @@
 
         <!--第5个进程-->
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$Standard00"
+            android:name="com.dp.shell.DpActivityStub$P05$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2683,7 +2688,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2701,7 +2706,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2719,7 +2724,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2737,7 +2742,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2755,7 +2760,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2773,7 +2778,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2791,7 +2796,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2809,7 +2814,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2827,7 +2832,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2845,7 +2850,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2863,7 +2868,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2881,7 +2886,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P05$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$P05$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2900,7 +2905,7 @@
         </activity>
 
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$Standard00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2918,7 +2923,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2936,7 +2941,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2954,7 +2959,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2972,7 +2977,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -2990,7 +2995,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3008,7 +3013,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3026,7 +3031,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3044,7 +3049,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3062,7 +3067,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3080,7 +3085,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3098,7 +3103,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3116,7 +3121,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P05$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P05$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3135,7 +3140,7 @@
         </activity>
 
         <service
-            android:name="com.dp.shell.ServiceStub$StubP05$P00"
+            android:name="com.dp.shell.DpServiceStub$StubP05$P00"
             android:exported="false"
             android:label="@string/stub_name_service"
             android:process=":PluginP05">
@@ -3154,7 +3159,7 @@
 
         <!--第6个进程-->
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$Standard00"
+            android:name="com.dp.shell.DpActivityStub$P06$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3172,7 +3177,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3190,7 +3195,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3208,7 +3213,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3226,7 +3231,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3244,7 +3249,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3262,7 +3267,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3280,7 +3285,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3298,7 +3303,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3316,7 +3321,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3334,7 +3339,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3352,7 +3357,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3370,7 +3375,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P06$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$P06$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3390,7 +3395,7 @@
 
 
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$Standard00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3408,7 +3413,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3426,7 +3431,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3444,7 +3449,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3462,7 +3467,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3480,7 +3485,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3498,7 +3503,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3516,7 +3521,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3534,7 +3539,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3552,7 +3557,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3570,7 +3575,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3588,7 +3593,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3606,7 +3611,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P06$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P06$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3625,7 +3630,7 @@
         </activity>
 
         <service
-            android:name="com.dp.shell.ServiceStub$StubP06$P00"
+            android:name="com.dp.shell.DpServiceStub$StubP06$P00"
             android:exported="false"
             android:label="@string/stub_name_service"
             android:process=":PluginP06">
@@ -3644,7 +3649,7 @@
 
         <!--第7个进程-->
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$Standard00"
+            android:name="com.dp.shell.DpActivityStub$P07$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3662,7 +3667,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3680,7 +3685,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3698,7 +3703,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3716,7 +3721,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3734,7 +3739,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3752,7 +3757,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3770,7 +3775,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3788,7 +3793,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3806,7 +3811,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3824,7 +3829,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3842,7 +3847,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3860,7 +3865,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P07$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$P07$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3878,7 +3883,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$Standard00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3896,7 +3901,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3914,7 +3919,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3932,7 +3937,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3950,7 +3955,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3968,7 +3973,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -3986,7 +3991,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4004,7 +4009,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4022,7 +4027,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4040,7 +4045,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4058,7 +4063,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4076,7 +4081,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4094,7 +4099,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P07$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P07$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4114,7 +4119,7 @@
 
 
         <service
-            android:name="com.dp.shell.ServiceStub$StubP07$P00"
+            android:name="com.dp.shell.DpServiceStub$StubP07$P00"
             android:exported="false"
             android:label="@string/stub_name_service"
             android:process=":PluginP07">
@@ -4136,7 +4141,7 @@
 
         <!--第8个进程-->
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$Standard00"
+            android:name="com.dp.shell.DpActivityStub$P08$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4154,7 +4159,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4172,7 +4177,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4190,7 +4195,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4208,7 +4213,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4226,7 +4231,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4244,7 +4249,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4262,7 +4267,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4280,7 +4285,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4298,7 +4303,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4316,7 +4321,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4334,7 +4339,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4352,7 +4357,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$P08$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$P08$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4371,7 +4376,7 @@
         </activity>
 
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$Standard00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$Standard00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4389,7 +4394,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleInstance00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleInstance00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4407,7 +4412,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleInstance01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleInstance01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4425,7 +4430,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleInstance02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleInstance02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4443,7 +4448,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleInstance03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleInstance03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4461,7 +4466,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleTask00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleTask00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4479,7 +4484,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleTask01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleTask01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4497,7 +4502,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleTask02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleTask02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4515,7 +4520,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleTask03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleTask03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4533,7 +4538,7 @@
                 android:value="3" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleTop00"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleTop00"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4551,7 +4556,7 @@
                 android:value="0" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleTop01"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleTop01"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4569,7 +4574,7 @@
                 android:value="1" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleTop02"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleTop02"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4587,7 +4592,7 @@
                 android:value="2" />
         </activity>
         <activity
-            android:name="com.dp.shell.ActivityStub$Dialog$P08$SingleTop03"
+            android:name="com.dp.shell.DpActivityStub$Dialog$P08$SingleTop03"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -4606,7 +4611,7 @@
         </activity>
 
         <service
-            android:name="com.dp.shell.ServiceStub$StubP08$P00"
+            android:name="com.dp.shell.DpServiceStub$StubP08$P00"
             android:exported="false"
             android:label="@string/stub_name_service"
             android:process=":PluginP08">

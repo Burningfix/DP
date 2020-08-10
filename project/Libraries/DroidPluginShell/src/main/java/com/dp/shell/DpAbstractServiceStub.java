@@ -8,7 +8,7 @@ import android.os.IBinder;
 
 import java.lang.reflect.Method;
 
-public abstract class AbstractServiceStub extends Service {
+public abstract class DpAbstractServiceStub extends Service {
 
     private static final String TAG = "AbstractServiceStub";
 
@@ -18,7 +18,7 @@ public abstract class AbstractServiceStub extends Service {
     public void onCreate() {
         super.onCreate();
         if (mObj == null) {
-            mObj = DpLoadUtils.load(getApplicationContext(), "com.morgoo.droidplugin.stub.AbstractContentProviderStub");
+            mObj = DpLoadUtils.load(getApplicationContext(), "com.morgoo.droidplugin.stub.AbstractServiceStub");
         }
         if (mObj != null) {
             Method method = null;

@@ -15,9 +15,9 @@ import android.os.Bundle;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-public abstract class AbstractContentProviderStub extends ContentProvider {
+public abstract class DpAbstractContentProviderStub extends ContentProvider {
 
-    private static final String TAG = AbstractContentProviderStub.class.getSimpleName();
+    private static final String TAG = DpAbstractContentProviderStub.class.getSimpleName();
 
     private Object mObj;
 
@@ -25,7 +25,7 @@ public abstract class AbstractContentProviderStub extends ContentProvider {
     @Override
     public boolean onCreate() {
         if (mObj == null) {
-            mObj = DpLoadUtils.load(PluginHelper.getInstance().getContext(), "com.morgoo.droidplugin.stub.AbstractContentProviderStub");
+            mObj = DpLoadUtils.load(DpPluginHelper.getInstance().getContext(), "com.morgoo.droidplugin.stub.AbstractContentProviderStub");
         }
         return true;
     }

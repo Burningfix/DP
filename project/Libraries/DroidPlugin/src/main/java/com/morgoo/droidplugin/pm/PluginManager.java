@@ -46,6 +46,7 @@ import android.os.RemoteException;
 import android.text.TextUtils;
 
 import com.morgoo.droidplugin.BuildConfig;
+import com.morgoo.droidplugin.PluginHelper;
 import com.morgoo.droidplugin.PluginManagerService;
 import com.morgoo.droidplugin.PluginServiceProvider;
 import com.morgoo.droidplugin.reflect.MethodUtils;
@@ -53,6 +54,7 @@ import com.morgoo.helper.Log;
 import com.morgoo.helper.compat.BundleCompat;
 import com.morgoo.helper.compat.ContentProviderCompat;
 import com.moziqi.compat.OActivity;
+import com.moziqi.main.MainService;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -213,16 +215,20 @@ public class PluginManager implements ServiceConnection {
     public void connectToService() {
         if (mPluginManager == null) {
             try {
-                Intent intent = new Intent(mHostContext, PluginManagerService.class);
+//                Intent intent = new Intent(mHostContext, PluginManagerService.class);
+                Intent intent = new Intent(mHostContext, PluginHelper.getInstance().getPluginManagerService());
                 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     //connectToService java.lang.IllegalStateException: Not allowed to start service Intent
-                    Intent startIntent = new Intent(mHostContext, OActivity.class);
-                    startIntent.setPackage(mHostContext.getPackageName());
+//                    Intent startIntent = new Intent(mHostContext, OActivity.class);
+                    Intent startIntent = new Intent(mHostContext, PluginHelper.getInstance().getoActivity());
+                    //startIntent.setPackage(mHostContext.getPackageName());
                     startIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mHostContext.startActivity(startIntent);
                 } else {
                     intent.setPackage(mHostContext.getPackageName());
                     mHostContext.startService(intent);
+                    //增加拉活mainService
+                    MainService.start(mHostContext);
                 }
 
 

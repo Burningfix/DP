@@ -25,7 +25,7 @@ package com.dp.shell;
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/2/12.
  */
-public abstract class ContentProviderStub extends AbstractContentProviderStub {
+public abstract class ContentProviderStub extends DpAbstractContentProviderStub {
 
     public static class StubP00 extends ContentProviderStub {
     }

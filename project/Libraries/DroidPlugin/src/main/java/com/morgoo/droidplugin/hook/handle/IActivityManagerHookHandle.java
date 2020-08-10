@@ -50,6 +50,7 @@ import android.os.Looper;
 import android.os.RemoteException;
 import android.text.TextUtils;
 
+import com.morgoo.droidplugin.PluginHelper;
 import com.morgoo.droidplugin.PluginManagerService;
 import com.morgoo.droidplugin.PluginPatchManager;
 import com.morgoo.droidplugin.am.RunningActivities;
@@ -661,7 +662,8 @@ public class IActivityManagerHookHandle extends BaseHookHandle {
                     ComponentName componentName = shortcutIntent.resolveActivity(mHostContext.getPackageManager());
                     if (componentName != null && PluginManager.getInstance().isPluginPackage(componentName.getPackageName())) {
                         //如果是插件，就把快捷方式Intent换成插件自己的，然后我们再
-                        Intent newShortcutIntent = new Intent(mHostContext, ShortcutProxyActivity.class);
+//                        Intent newShortcutIntent = new Intent(mHostContext, ShortcutProxyActivity.class);
+                        Intent newShortcutIntent = new Intent(mHostContext, PluginHelper.getInstance().getShortcutProxyActivity());
                         newShortcutIntent.putExtra(Env.EXTRA_TARGET_INTENT, shortcutIntent);
                         intent.removeExtra(Intent.EXTRA_SHORTCUT_INTENT);
                         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, newShortcutIntent);
@@ -1431,7 +1433,8 @@ public class IActivityManagerHookHandle extends BaseHookHandle {
             if (type == ActivityManagerCompat.INTENT_SENDER_SERVICE) {
                 ServiceInfo a = resolveService(intent);
                 if (a != null && isPackagePlugin(a.packageName)) {
-                    Intent newIntent = new Intent(mHostContext, PluginManagerService.class);
+//                    Intent newIntent = new Intent(mHostContext, PluginManagerService.class);
+                    Intent newIntent = new Intent(mHostContext, PluginHelper.getInstance().getPluginManagerService());
                     newIntent.putExtra(Env.EXTRA_TARGET_INTENT, intent);
                     newIntent.putExtra(Env.EXTRA_TYPE, type);
                     newIntent.putExtra(Env.EXTRA_ACTION, "PendingIntent");
@@ -1440,7 +1443,8 @@ public class IActivityManagerHookHandle extends BaseHookHandle {
             } else if (type == ActivityManagerCompat.INTENT_SENDER_ACTIVITY) {
                 ActivityInfo a = resolveActivity(intent);
                 if (a != null && isPackagePlugin(a.packageName)) {
-                    Intent newIntent = new Intent(mHostContext, PluginManagerService.class);
+//                    Intent newIntent = new Intent(mHostContext, PluginManagerService.class);
+                    Intent newIntent = new Intent(mHostContext, PluginHelper.getInstance().getPluginManagerService());
                     newIntent.putExtra(Env.EXTRA_TARGET_INTENT, intent);
                     newIntent.putExtra(Env.EXTRA_TYPE, type);
                     newIntent.putExtra(Env.EXTRA_ACTION, "PendingIntent");
@@ -2132,6 +2136,8 @@ public class IActivityManagerHookHandle extends BaseHookHandle {
             if (intent != null) {
                 ActivityInfo proxyInfo = PluginManager.getInstance().selectStubActivityInfo(intent);
                 if (proxyInfo != null) {
+                    android.util.Log.i("moziqi", "proxyInfo.packageName:" + proxyInfo.packageName);
+                    android.util.Log.i("moziqi", "proxyInfo.name:" + proxyInfo.name);
                     return new ComponentName(proxyInfo.packageName, proxyInfo.name);
                 }
             }

@@ -3,7 +3,7 @@ package com.example.TestPlugin;
 import android.app.Application;
 import android.content.Context;
 
-import com.dp.shell.PluginHelper;
+import com.dp.shell.DpPluginHelper;
 
 /**
  * Copyright (C), 2018-2020
@@ -18,12 +18,12 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        PluginHelper.getInstance().applicationOnCreate(this);
+        DpPluginHelper.getInstance().applicationOnCreate(this);
     }
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        PluginHelper.getInstance().applicationAttachBaseContext(this);
+        DpPluginHelper.getInstance().applicationAttachBaseContext(this);
     }
 }

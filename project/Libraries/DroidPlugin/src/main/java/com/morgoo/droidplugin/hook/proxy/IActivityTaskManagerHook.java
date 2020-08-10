@@ -53,7 +53,7 @@ public class IActivityTaskManagerHook extends ProxyHook {
 
     @Override
     protected void onInstall(ClassLoader classLoader) throws Throwable {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 29) {
             //參考
             //https://github.com/findandroidviewbyid/Hook
             // https://blog.csdn.net/u014379448/article/details/106299656/

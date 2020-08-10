@@ -34,6 +34,7 @@ import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.text.TextUtils;
 
+import com.morgoo.droidplugin.PluginHelper;
 import com.morgoo.droidplugin.stub.ActivityStub;
 import com.morgoo.droidplugin.stub.ContentProviderStub;
 
@@ -268,11 +269,13 @@ class StaticProcessList {
         ArrayList<ActivityInfo> activityInfos = new ArrayList<ActivityInfo>();
         for (ActivityInfo info : values) {
             if (dialogStyle) {
-                if (info.name.startsWith(ActivityStub.Dialog.class.getName())) {
+//                if (info.name.startsWith(ActivityStub.Dialog.class.getName())) {
+                if (info.name.startsWith(PluginHelper.getInstance().getActivityStubDialog().getName())) {
                     activityInfos.add(info);
                 }
             } else {
-                if (!info.name.startsWith(ActivityStub.Dialog.class.getName())) {
+//                if (!info.name.startsWith(ActivityStub.Dialog.class.getName())) {
+                if (!info.name.startsWith(PluginHelper.getInstance().getActivityStubDialog().getName())) {
                     activityInfos.add(info);
                 }
             }

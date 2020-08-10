@@ -17,7 +17,7 @@ import android.view.WindowManager;
  * <author> <time> <version> <desc>
  * 作者姓名 修改时间 版本号 描述
  */
-public class OActivity extends Activity {
+public class DpOActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,9 +35,14 @@ public class OActivity extends Activity {
             params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
             window.setAttributes(params);
             //PluginManager.connectToService(PluginManager.java:216
-            Intent intent = new Intent(getApplicationContext(), PluginManagerService.class);
-            intent.setPackage(getApplicationContext().getPackageName());
+            Intent intent = new Intent(getApplicationContext(), DpPluginManagerService.class);
+            //intent.setPackage(getApplicationContext().getPackageName());
             startService(intent);
+
+            Intent intent2 = new Intent(getApplicationContext(), DpMainService.class);
+            //intent.setPackage(getApplicationContext().getPackageName());
+            startService(intent2);
+
             //大于5.0
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 //VBJSer.start(this);

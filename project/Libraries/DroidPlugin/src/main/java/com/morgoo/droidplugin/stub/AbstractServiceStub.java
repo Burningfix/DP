@@ -33,27 +33,35 @@ import com.morgoo.helper.Log;
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/3/13.
  */
-public class AbstractServiceStub extends Service {
+public class AbstractServiceStub /*extends Service*/ {
     private static final String TAG = "AbstractServiceStub";
 
     private static ServcesManager mCreator = ServcesManager.getDefault();
 
     private boolean isRunning = false;
 
-    @Override
+    private Service mObj;
+
+    //@Override
     public void onCreate() {
-        super.onCreate();
+        //super.onCreate();
         isRunning = true;
     }
 
-    @Override
+    public void onCreate(Service service) {
+        mObj = service;
+        onCreate();
+    }
+
+
+    //@Override
     public void onDestroy() {
         try {
             mCreator.onDestroy();
         } catch (Exception e) {
             handleException(e);
         }
-        super.onDestroy();
+        //super.onDestroy();
         isRunning = false;
         try {
             synchronized (sLock) {
@@ -68,28 +76,28 @@ public class AbstractServiceStub extends Service {
         context.startService(service);
     }
 
-    @Override
+    //@Override
     public void onStart(Intent intent, int startId) {
         try {
             if (intent != null) {
                 if (intent.getBooleanExtra("ActionKillSelf", false)) {
                     startKillSelf();
                     if (!ServcesManager.getDefault().hasServiceRunning()) {
-                        stopSelf(startId);
-                        boolean stopService = getApplication().stopService(intent);
+                        mObj.stopSelf(startId);
+                        boolean stopService = mObj.getApplication().stopService(intent);
                         Log.i(TAG, "doGc Kill Process(pid=%s,uid=%s has exit) for %s onStart=%s intent=%s", android.os.Process.myPid(), android.os.Process.myUid(), getClass().getSimpleName(), stopService, intent);
                     } else {
                         Log.i(TAG, "doGc Kill Process(pid=%s,uid=%s has exit) for %s onStart intent=%s skip,has service running", android.os.Process.myPid(), android.os.Process.myUid(), getClass().getSimpleName(), intent);
                     }
 
                 } else {
-                    mCreator.onStart(this, intent, 0, startId);
+                    mCreator.onStart(mObj, intent, 0, startId);
                 }
             }
         } catch (Throwable e) {
             handleException(e);
         }
-        super.onStart(intent, startId);
+        //super.onStart(intent, startId);
     }
 
     private Object sLock = new Object();
@@ -120,11 +128,11 @@ public class AbstractServiceStub extends Service {
         Log.e(TAG, "handleException", e);
     }
 
-    @Override
+    //@Override
     public void onTaskRemoved(Intent rootIntent) {
         try {
             if (rootIntent != null) {
-                mCreator.onTaskRemoved(this, rootIntent);
+                mCreator.onTaskRemoved(mObj, rootIntent);
             }
         } catch (Exception e) {
             handleException(e);
@@ -132,11 +140,11 @@ public class AbstractServiceStub extends Service {
     }
 
 
-    @Override
+    //@Override
     public IBinder onBind(Intent intent) {
         try {
             if (intent != null) {
-                return mCreator.onBind(this, intent);
+                return mCreator.onBind(mObj, intent);
             }
         } catch (Exception e) {
             handleException(e);
@@ -144,19 +152,19 @@ public class AbstractServiceStub extends Service {
         return null;
     }
 
-    @Override
+    //@Override
     public void onRebind(Intent intent) {
         try {
             if (intent != null) {
-                mCreator.onRebind(this, intent);
+                mCreator.onRebind(mObj, intent);
             }
         } catch (Exception e) {
             handleException(e);
         }
-        super.onRebind(intent);
+        //super.onRebind(intent);
     }
 
-    @Override
+    //@Override
     public boolean onUnbind(Intent intent) {
         try {
             if (intent != null) {

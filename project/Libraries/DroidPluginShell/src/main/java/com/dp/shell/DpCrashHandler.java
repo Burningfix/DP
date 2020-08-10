@@ -41,14 +41,14 @@ import java.util.List;
 /**
  * @author Andy Zhang(zhangyong232@gmail.com)
  */
-public class MyCrashHandler implements UncaughtExceptionHandler {
+public class DpCrashHandler implements UncaughtExceptionHandler {
 
     private static final String TAG = "MyCrashHandler";
 
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT1 = new SimpleDateFormat("yyyyMMddHHmmss");
 
-    private static final MyCrashHandler sMyCrashHandler = new MyCrashHandler();
+    private static final DpCrashHandler sMyCrashHandler = new DpCrashHandler();
 
 
     private UncaughtExceptionHandler mOldHandler;
@@ -56,7 +56,7 @@ public class MyCrashHandler implements UncaughtExceptionHandler {
     private Context mContext;
 
 
-    public static MyCrashHandler getInstance() {
+    public static DpCrashHandler getInstance() {
         return sMyCrashHandler;
     }
 

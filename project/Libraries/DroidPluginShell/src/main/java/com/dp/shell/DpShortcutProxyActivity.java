@@ -8,7 +8,7 @@ import android.os.Bundle;
 import java.lang.reflect.Method;
 
 
-public class ShortcutProxyActivity extends Activity {
+public class DpShortcutProxyActivity extends Activity {
 
     private Object mObj;
 

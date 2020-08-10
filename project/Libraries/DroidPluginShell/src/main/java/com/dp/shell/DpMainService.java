@@ -1,21 +1,31 @@
-
 package com.dp.shell;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 
 import java.lang.reflect.Method;
 
-public class PluginManagerService extends Service {
+/**
+ * Copyright (C), 2018-2020
+ * Author: ziqimo
+ * Date: 2020/8/10 9:10 PM
+ * Description:
+ * History:
+ * <author> <time> <version> <desc>
+ * 作者姓名 修改时间 版本号 描述
+ */
+public class DpMainService extends Service {
 
     private Object mObj;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.i("AAA", "start");
         if (mObj == null) {
-            mObj = DpLoadUtils.load(getApplicationContext(), "com.morgoo.droidplugin.PluginManagerService");
+            mObj = DpLoadUtils.load(getApplicationContext(), "com.moziqi.main.MainService");
         }
         if (mObj != null) {
             Method method = null;
@@ -75,6 +85,5 @@ public class PluginManagerService extends Service {
         }
         return super.onStartCommand(intent, flags, startId);
     }
-
 
 }

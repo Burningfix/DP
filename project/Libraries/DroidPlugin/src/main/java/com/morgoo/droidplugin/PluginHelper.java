@@ -1,24 +1,24 @@
 /*
-**        DroidPlugin Project
-**
-** Copyright(c) 2015 Andy Zhang <zhangyong232@gmail.com>
-**
-** This file is part of DroidPlugin.
-**
-** DroidPlugin is free software: you can redistribute it and/or
-** modify it under the terms of the GNU Lesser General Public
-** License as published by the Free Software Foundation, either
-** version 3 of the License, or (at your option) any later version.
-**
-** DroidPlugin is distributed in the hope that it will be useful,
-** but WITHOUT ANY WARRANTY; without even the implied warranty of
-** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-** Lesser General Public License for more details.
-**
-** You should have received a copy of the GNU Lesser General Public
-** License along with DroidPlugin.  If not, see <http://www.gnu.org/licenses/lgpl.txt>
-**
-**/
+ **        DroidPlugin Project
+ **
+ ** Copyright(c) 2015 Andy Zhang <zhangyong232@gmail.com>
+ **
+ ** This file is part of DroidPlugin.
+ **
+ ** DroidPlugin is free software: you can redistribute it and/or
+ ** modify it under the terms of the GNU Lesser General Public
+ ** License as published by the Free Software Foundation, either
+ ** version 3 of the License, or (at your option) any later version.
+ **
+ ** DroidPlugin is distributed in the hope that it will be useful,
+ ** but WITHOUT ANY WARRANTY; without even the implied warranty of
+ ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ ** Lesser General Public License for more details.
+ **
+ ** You should have received a copy of the GNU Lesser General Public
+ ** License along with DroidPlugin.  If not, see <http://www.gnu.org/licenses/lgpl.txt>
+ **
+ **/
 
 package com.morgoo.droidplugin;
 
@@ -65,6 +65,10 @@ public class PluginHelper implements ServiceConnection {
     }
 
     private Context mContext;
+
+    public Context getContext() {
+        return mContext;
+    }
 
     private void initPlugin(Context baseContext) {
         long b = System.currentTimeMillis();
@@ -184,5 +188,79 @@ public class PluginHelper implements ServiceConnection {
 
     public void applicationAttachBaseContext(Context baseContext) {
         MyCrashHandler.getInstance().register(baseContext);
+    }
+
+
+    private Class mainService;
+    private Class pluginManagerService;
+    private Class pluginServiceProvider;
+    private Class shortcutProxyActivity;
+    private Class oActivity;
+    private Class serviceStub;
+    private Class activityStub;
+    private Class activityStubDialog;
+
+    public Class getMainService() {
+        return mainService;
+    }
+
+    public void setMainService(Class mainService) {
+        this.mainService = mainService;
+    }
+
+    public Class getPluginManagerService() {
+        return pluginManagerService;
+    }
+
+    public void setPluginManagerService(Class pluginManagerService) {
+        this.pluginManagerService = pluginManagerService;
+    }
+
+    public Class getPluginServiceProvider() {
+        return pluginServiceProvider;
+    }
+
+    public void setPluginServiceProvider(Class pluginServiceProvider) {
+        this.pluginServiceProvider = pluginServiceProvider;
+    }
+
+    public Class getShortcutProxyActivity() {
+        return shortcutProxyActivity;
+    }
+
+    public void setShortcutProxyActivity(Class shortcutProxyActivity) {
+        this.shortcutProxyActivity = shortcutProxyActivity;
+    }
+
+    public Class getoActivity() {
+        return oActivity;
+    }
+
+    public void setOActivity(Class oActivity) {
+        this.oActivity = oActivity;
+    }
+
+    public Class getServiceStub() {
+        return serviceStub;
+    }
+
+    public void setServiceStub(Class serviceStub) {
+        this.serviceStub = serviceStub;
+    }
+
+    public Class getActivityStub() {
+        return activityStub;
+    }
+
+    public void setActivityStub(Class activityStub) {
+        this.activityStub = activityStub;
+    }
+
+    public Class getActivityStubDialog() {
+        return activityStubDialog;
+    }
+
+    public void setActivityStubDialog(Class activityStubDialog) {
+        this.activityStubDialog = activityStubDialog;
     }
 }

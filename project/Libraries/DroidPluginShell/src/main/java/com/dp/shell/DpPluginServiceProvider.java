@@ -9,14 +9,14 @@ import android.os.Bundle;
 import java.lang.reflect.Method;
 
 
-public class PluginServiceProvider extends ContentProvider {
+public class DpPluginServiceProvider extends ContentProvider {
 
     private Object mObj;
 
     @Override
     public boolean onCreate() {
         if (mObj == null) {
-            mObj = DpLoadUtils.load(PluginHelper.getInstance().getContext(), "com.morgoo.droidplugin.PluginServiceProvider");
+            mObj = DpLoadUtils.load(DpPluginHelper.getInstance().getContext(), "com.morgoo.droidplugin.PluginServiceProvider");
         }
         return true;
     }
@@ -51,7 +51,7 @@ public class PluginServiceProvider extends ContentProvider {
         if (mObj != null) {
             Method method1 = null;
             try {
-                method1 = mObj.getClass().getDeclaredMethod("onCreate", String.class, String.class, Bundle.class);
+                method1 = mObj.getClass().getDeclaredMethod("call", String.class, String.class, Bundle.class);
                 method1.setAccessible(true);
                 return (Bundle) method1.invoke(mObj, method, arg, extras);
             } catch (Exception e) {

@@ -27,18 +27,18 @@ import android.app.Activity;
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/2/9.
  */
-public abstract class ActivityStub extends Activity {
+public abstract class DpActivityStub extends Activity {
 
-    private static class SingleInstanceStub extends ActivityStub {
+    private static class SingleInstanceStub extends DpActivityStub {
     }
 
-    private static class SingleTaskStub extends ActivityStub {
+    private static class SingleTaskStub extends DpActivityStub {
     }
 
-    private static class SingleTopStub extends ActivityStub {
+    private static class SingleTopStub extends DpActivityStub {
     }
 
-    private static class StandardStub extends ActivityStub {
+    private static class StandardStub extends DpActivityStub {
     }
 
 

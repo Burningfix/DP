@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.morgoo.droidplugin.core.Env;
 import com.morgoo.droidplugin.pm.PluginManager;
@@ -36,13 +37,15 @@ import java.net.URISyntaxException;
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/5/27.
  */
-public class ShortcutProxyActivity extends Activity {
+public class ShortcutProxyActivity /*extends Activity*/ {
 
-    @Override
+    private Activity mObj;
+
+//    @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
-            super.onCreate(savedInstanceState);
-            Intent intent = getIntent();
+            //super.onCreate(savedInstanceState);
+            Intent intent = mObj.getIntent();
 
             if (intent != null) {
                 Intent forwordIntent = getForwarIntent();
@@ -57,24 +60,29 @@ public class ShortcutProxyActivity extends Activity {
                         if (isPlugin(forwordIntent)) {
                             execStartForwordIntent(forwordIntent);
                         }
-                        finish();
+                        mObj.finish();
                     } else {
                         waitAndStart(forwordIntent);
                     }
                 } else {
-                    finish();
+                    mObj.finish();
                 }
             } else {
-                finish();
+                mObj.finish();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            finish();
+            mObj.finish();
         }
     }
 
+    public void onCreate(Activity obj, @Nullable Bundle savedInstanceState) {
+        mObj = obj;
+        onCreate(savedInstanceState);
+    }
+
     protected void execStartForwordIntent(Intent forwordIntent) {
-        startActivity(forwordIntent);
+        mObj.startActivity(forwordIntent);
     }
 
     private boolean isPlugin(Intent intent) {
@@ -104,7 +112,7 @@ public class ShortcutProxyActivity extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    finish();
+                    mObj.finish();
                 }
 
             }
@@ -112,7 +120,7 @@ public class ShortcutProxyActivity extends Activity {
     }
 
     private Intent getForwarIntent() {
-        Intent intent = getIntent();
+        Intent intent = mObj.getIntent();
         try {
             if (intent != null) {
                 Intent forwordIntent = intent.getParcelableExtra(Env.EXTRA_TARGET_INTENT);

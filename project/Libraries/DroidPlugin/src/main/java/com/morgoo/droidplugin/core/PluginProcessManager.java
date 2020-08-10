@@ -44,6 +44,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
+import com.morgoo.droidplugin.PluginHelper;
 import com.morgoo.droidplugin.hook.HookFactory;
 import com.morgoo.droidplugin.pm.PluginManager;
 import com.morgoo.droidplugin.reflect.FieldUtils;
@@ -132,7 +133,8 @@ public class PluginProcessManager {
 
             if (packageInfo.services != null) {
                 for (ServiceInfo info : packageInfo.services) {
-                    if (!sProcessList.contains(info.processName) && info.processName != null && info.name != null && info.name.indexOf(ServiceStub.class.getSimpleName()) < 0) {
+//                    if (!sProcessList.contains(info.processName) && info.processName != null && info.name != null && info.name.indexOf(ServiceStub.class.getSimpleName()) < 0) {
+                    if (!sProcessList.contains(info.processName) && info.processName != null && info.name != null && info.name.indexOf(PluginHelper.getInstance().getServiceStub().getSimpleName()) < 0) {
                         sProcessList.add(info.processName);
                     }
                 }
@@ -140,12 +142,16 @@ public class PluginProcessManager {
 
             if (packageInfo.activities != null) {
                 for (ActivityInfo info : packageInfo.activities) {
-                    if (!sProcessList.contains(info.processName) && info.processName != null && info.name != null && info.name.indexOf(ActivityStub.class.getSimpleName()) < 0) {
+//                    if (!sProcessList.contains(info.processName) && info.processName != null && info.name != null && info.name.indexOf(ActivityStub.class.getSimpleName()) < 0) {
+                    if (!sProcessList.contains(info.processName) && info.processName != null && info.name != null && info.name.indexOf(PluginHelper.getInstance().getActivityStub().getSimpleName()) < 0) {
+
+                        android.util.Log.i("moziqi", "info.processName:" + info.name);
                         sProcessList.add(info.processName);
                     }
                 }
             }
         } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -234,12 +240,14 @@ public class PluginProcessManager {
                     if (apk != null) {
                         ClassLoader classloader = null;
                         try {
-                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, hostContext.getClassLoader().getParent());
+//                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, hostContext.getClassLoader().getParent());
+                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, PluginProcessManager.class.getClassLoader());
                         } catch (Exception e) {
                         }
                         if (classloader == null) {
                             PluginDirHelper.cleanOptimizedDirectory(optimizedDirectory);
-                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, hostContext.getClassLoader().getParent());
+//                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, hostContext.getClassLoader().getParent());
+                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, PluginProcessManager.class.getClassLoader());
                         }
                         synchronized (loadedApk) {
                             FieldUtils.writeDeclaredField(loadedApk, "mClassLoader", classloader);
