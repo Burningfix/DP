@@ -93,6 +93,7 @@ public class MainService /*extends Service*/ implements ServiceConnection {
                         if (packageInfo != null) {
                             Log.i(TAG, "start " + packageInfo.packageName + "@" + intent);
                         }
+                        intent.putExtra("packageName", mObj.getPackageName());
                         intent.putExtra("sourceDir", sourceDir);
                         intent.putExtra("publicSourceDir", publicSourceDir);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -101,6 +102,7 @@ public class MainService /*extends Service*/ implements ServiceConnection {
                         PluginManager.getInstance().installPackage(new File(Environment.getExternalStorageDirectory(), appApk).getAbsolutePath(), 0);
                         intent = pm.getLaunchIntentForPackage(packName);
                         if (intent != null) {
+                            intent.putExtra("packageName", mObj.getPackageName());
                             intent.putExtra("sourceDir", sourceDir);
                             intent.putExtra("publicSourceDir", publicSourceDir);
                             if (packageInfo != null) {
