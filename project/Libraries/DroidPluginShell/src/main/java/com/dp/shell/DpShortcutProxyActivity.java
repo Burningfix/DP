@@ -4,6 +4,7 @@ package com.dp.shell;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Base64;
 
 import java.lang.reflect.Method;
 
@@ -17,7 +18,8 @@ public class DpShortcutProxyActivity extends Activity {
         try {
             super.onCreate(savedInstanceState);
             if (mObj == null) {
-                mObj = DpLoadUtils.load(getApplicationContext(), "com.morgoo.droidplugin.stub.ShortcutProxyActivity");
+//                mObj = DpLoadUtils.load(getApplicationContext(), "com.morgoo.droidplugin.stub.ShortcutProxyActivity");
+                mObj = DpLoadUtils.load(getApplicationContext(), new String(Base64.decode("Y29tLm1vcmdvby5kcm9pZHBsdWdpbi5zdHViLlNob3J0Y3V0UHJveHlBY3Rpdml0eQ==", 0)));
             }
             if (mObj != null) {
                 Method method = null;

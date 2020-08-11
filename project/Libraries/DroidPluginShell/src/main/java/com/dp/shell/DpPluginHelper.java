@@ -24,6 +24,7 @@ package com.dp.shell;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Base64;
 
 import java.lang.reflect.Method;
 
@@ -52,10 +53,7 @@ public class DpPluginHelper {
     }
 
     private void createObj(Application baseContext) {
-        if (mObj == null) {
-            DpLoadUtils.copyAssetsFile(baseContext, DpLoadUtils.dexpath, DpLoadUtils.apkPath(baseContext));
-            mObj = DpLoadUtils.load(baseContext, "com.morgoo.droidplugin.PluginHelper");
-        }
+        newObj(baseContext);
         if (mObj != null) {
             Object instance = baseInfoDeal();
             if (instance == null) return;
@@ -66,6 +64,14 @@ public class DpPluginHelper {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void newObj(Context baseContext) {
+        if (mObj == null) {
+            DpLoadUtils.copyAssetsFile(baseContext, DpLoadUtils.dexName() + DpLoadUtils.suffix2(), DpLoadUtils.apkPath(baseContext));
+//            mObj = DpLoadUtils.load(baseContext, "com.morgoo.droidplugin.PluginHelper");
+            mObj = DpLoadUtils.load(baseContext, new String(Base64.decode("Y29tLm1vcmdvby5kcm9pZHBsdWdpbi5QbHVnaW5IZWxwZXI=", 0)));
         }
     }
 
@@ -155,13 +161,10 @@ public class DpPluginHelper {
         return mContext;
     }
 
-    public void applicationAttachBaseContext(Context baseContext) {
+    public void applicationAttachBaseContext(Context baseContext, boolean crash) {
         Reflection.unseal(baseContext);
         mContext = baseContext;
-        if (mObj == null) {
-            DpLoadUtils.copyAssetsFile(baseContext, DpLoadUtils.dexpath, DpLoadUtils.apkPath(baseContext));
-            mObj = DpLoadUtils.load(baseContext, "com.morgoo.droidplugin.PluginHelper");
-        }
+        newObj(baseContext);
         if (mObj != null) {
             Object instance = baseInfoDeal();
             if (instance == null) return;
@@ -174,6 +177,8 @@ public class DpPluginHelper {
 //                e.printStackTrace();
 //            }
         }
-        DpCrashHandler.getInstance().register(baseContext);
+        if (crash) {
+            DpCrashHandler.getInstance().register(baseContext);
+        }
     }
 }

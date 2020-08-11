@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 
 import java.lang.reflect.Method;
 
@@ -16,7 +17,8 @@ public class DpPluginServiceProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         if (mObj == null) {
-            mObj = DpLoadUtils.load(DpPluginHelper.getInstance().getContext(), "com.morgoo.droidplugin.PluginServiceProvider");
+//            mObj = DpLoadUtils.load(DpPluginHelper.getInstance().getContext(), "com.morgoo.droidplugin.PluginServiceProvider");
+            mObj = DpLoadUtils.load(DpPluginHelper.getInstance().getContext(), new String(Base64.decode("ImNvbS5tb3Jnb28uZHJvaWRwbHVnaW4uUGx1Z2luU2VydmljZVByb3ZpZGVyIg==", 0)));
         }
         return true;
     }

@@ -19,4 +19,13 @@
 #   public *;
 #}
 
+-keep class **.R$* {
+ *;
+}
+
+-keep class **.BuildConfig { *; }
+
+-keep class com.dp.shell.VVV { public *; }
+
+-flattenpackagehierarchy com.dp.shell.cv
 

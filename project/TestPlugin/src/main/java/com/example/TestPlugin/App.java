@@ -3,7 +3,7 @@ package com.example.TestPlugin;
 import android.app.Application;
 import android.content.Context;
 
-import com.dp.shell.DpPluginHelper;
+import com.dp.shell.VVV;
 
 /**
  * Copyright (C), 2018-2020
@@ -18,12 +18,12 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        DpPluginHelper.getInstance().applicationOnCreate(this);
+        VVV.applicationOnCreate(this);
     }
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        DpPluginHelper.getInstance().applicationAttachBaseContext(this);
+        VVV.applicationAttachBaseContext(this,false);
     }
 }

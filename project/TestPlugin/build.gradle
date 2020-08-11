@@ -7,9 +7,10 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:23.1.1'
     implementation 'com.android.support:design:23.1.1'
 
-    implementation fileTree(dir: 'libs', include: '*.jar')
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation 'me.weishu:free_reflection:3.0.1'
 //    implementation project(':Libraries:DroidPlugin')
-    implementation project(':Libraries:DroidPluginShell')
+//    implementation project(':Libraries:DroidPluginShell')
 }
 
 

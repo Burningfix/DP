@@ -23,7 +23,18 @@ import dalvik.system.DexClassLoader;
 public class DpLoadUtils {
     private static DexClassLoader dexClassLoader = null;
 
-    public static final String dexpath = "core.apk";
+
+    public static final String dexName() {
+        return "core";
+    }
+
+    public static final String suffix() {
+        return ".apk";
+    }
+
+    public static final String suffix2() {
+        return ".o";
+    }
 
     public static <T extends Object> T load(Context context, String name) {
         T obj = null;
@@ -53,7 +64,7 @@ public class DpLoadUtils {
 
 
     public static String apkPath(Context context) {
-        return context.getFilesDir() + File.separator + dexpath;
+        return context.getFilesDir() + File.separator + dexName() + suffix();
     }
 
     public static boolean copyAssetsFile(Context context, String fileName, String toFilePath) {

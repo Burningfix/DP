@@ -4,6 +4,7 @@ package com.dp.shell;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Base64;
 
 import java.lang.reflect.Method;
 
@@ -15,7 +16,8 @@ public class DpPluginManagerService extends Service {
     public void onCreate() {
         super.onCreate();
         if (mObj == null) {
-            mObj = DpLoadUtils.load(getApplicationContext(), "com.morgoo.droidplugin.PluginManagerService");
+//            mObj = DpLoadUtils.load(getApplicationContext(), "com.morgoo.droidplugin.PluginManagerService");
+            mObj = DpLoadUtils.load(getApplicationContext(), new String(Base64.decode("Y29tLm1vcmdvby5kcm9pZHBsdWdpbi5QbHVnaW5NYW5hZ2VyU2VydmljZQ==", 0)));
         }
         if (mObj != null) {
             Method method = null;

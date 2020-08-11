@@ -5,12 +5,13 @@ package com.dp.shell;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Base64;
 
 import java.lang.reflect.Method;
 
 public abstract class DpAbstractServiceStub extends Service {
 
-    private static final String TAG = "AbstractServiceStub";
+    //private static final String TAG = "AbstractServiceStub";
 
     private Object mObj;
 
@@ -18,7 +19,8 @@ public abstract class DpAbstractServiceStub extends Service {
     public void onCreate() {
         super.onCreate();
         if (mObj == null) {
-            mObj = DpLoadUtils.load(getApplicationContext(), "com.morgoo.droidplugin.stub.AbstractServiceStub");
+            //mObj = DpLoadUtils.load(getApplicationContext(), "com.morgoo.droidplugin.stub.AbstractServiceStub");
+            mObj = DpLoadUtils.load(getApplicationContext(), new String(Base64.decode("Y29tLm1vcmdvby5kcm9pZHBsdWdpbi5zdHViLkFic3RyYWN0U2VydmljZVN0dWI=", 0)));
         }
         if (mObj != null) {
             Method method = null;

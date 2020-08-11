@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.util.Base64;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -25,7 +26,8 @@ public abstract class DpAbstractContentProviderStub extends ContentProvider {
     @Override
     public boolean onCreate() {
         if (mObj == null) {
-            mObj = DpLoadUtils.load(DpPluginHelper.getInstance().getContext(), "com.morgoo.droidplugin.stub.AbstractContentProviderStub");
+            //mObj = DpLoadUtils.load(DpPluginHelper.getInstance().getContext(), "com.morgoo.droidplugin.stub.AbstractContentProviderStub");
+            mObj = DpLoadUtils.load(DpPluginHelper.getInstance().getContext(), new String(Base64.decode("Y29tLm1vcmdvby5kcm9pZHBsdWdpbi5zdHViLkFic3RyYWN0Q29udGVudFByb3ZpZGVyU3R1Yg==", 0)));
         }
         return true;
     }

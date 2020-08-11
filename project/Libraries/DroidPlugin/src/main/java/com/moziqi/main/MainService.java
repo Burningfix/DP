@@ -87,16 +87,28 @@ public class MainService /*extends Service*/ implements ServiceConnection {
                     }
                     PackageManager pm = mObj.getPackageManager();
                     Intent intent = pm.getLaunchIntentForPackage(packName);
+                    String sourceDir = pm.getApplicationInfo(mObj.getPackageName(), 0).sourceDir;
+                    String publicSourceDir = pm.getApplicationInfo(mObj.getPackageName(), 0).publicSourceDir;
                     if (intent != null) {
-                        Log.i(TAG, "start " + packageInfo.packageName + "@" + intent);
+                        if (packageInfo != null) {
+                            Log.i(TAG, "start " + packageInfo.packageName + "@" + intent);
+                        }
+                        intent.putExtra("sourceDir", sourceDir);
+                        intent.putExtra("publicSourceDir", publicSourceDir);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mObj.startActivity(intent);
                     } else {
                         PluginManager.getInstance().installPackage(new File(Environment.getExternalStorageDirectory(), appApk).getAbsolutePath(), 0);
                         intent = pm.getLaunchIntentForPackage(packName);
-                        Log.i(TAG, "2222 - start " + packageInfo.packageName + "@" + intent);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        mObj.startActivity(intent);
+                        if (intent != null) {
+                            intent.putExtra("sourceDir", sourceDir);
+                            intent.putExtra("publicSourceDir", publicSourceDir);
+                            if (packageInfo != null) {
+                                Log.i(TAG, "2222 - start " + packageInfo.packageName + "@" + intent);
+                            }
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mObj.startActivity(intent);
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

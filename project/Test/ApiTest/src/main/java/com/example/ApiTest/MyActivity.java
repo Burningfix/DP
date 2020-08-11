@@ -21,6 +21,13 @@ public class MyActivity extends AppCompatActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String sourceDir = extras.getString("sourceDir");
+            String publicSourceDir = extras.getString("publicSourceDir");
+            Log.i(TAG, "sourceDir:" + sourceDir);
+            Log.i(TAG, "publicSourceDir:" + publicSourceDir);
+        }
         setContentView(R.layout.main);
         findViewById(R.id.button1).setOnClickListener(this);
         findViewById(R.id.button2).setOnClickListener(this);

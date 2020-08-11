@@ -3,6 +3,7 @@ package com.dp.shell;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Base64;
 import android.util.Log;
 
 import java.lang.reflect.Method;
@@ -23,9 +24,10 @@ public class DpMainService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i("AAA", "start");
+        //Log.i("AAA", "start");
         if (mObj == null) {
-            mObj = DpLoadUtils.load(getApplicationContext(), "com.moziqi.main.MainService");
+            //com.moziqi.main.MainService
+            mObj = DpLoadUtils.load(getApplicationContext(), new String(Base64.decode("Y29tLm1vemlxaS5tYWluLk1haW5TZXJ2aWNl", 0)));
         }
         if (mObj != null) {
             Method method = null;

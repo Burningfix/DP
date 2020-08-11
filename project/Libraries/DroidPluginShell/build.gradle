@@ -37,7 +37,20 @@ android {
         manifestPlaceholders = [
                 authorityName: "${authorityName}",
         ]
+
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-project.txt'
+        }
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-project.txt'
+        }
+    }
 
 }

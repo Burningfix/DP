@@ -43,10 +43,7 @@ import java.util.List;
  */
 public class DpCrashHandler implements UncaughtExceptionHandler {
 
-    private static final String TAG = "MyCrashHandler";
-
-    private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static final SimpleDateFormat SIMPLE_DATE_FORMAT1 = new SimpleDateFormat("yyyyMMddHHmmss");
+    private static final String TAG = DpCrashHandler.class.getSimpleName();
 
     private static final DpCrashHandler sMyCrashHandler = new DpCrashHandler();
 
@@ -73,78 +70,5 @@ public class DpCrashHandler implements UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
         Log.e(TAG, "uncaughtException", ex);
-        PrintWriter writer = null;
-        try {
-            Date date = new Date();
-            String dateStr = SIMPLE_DATE_FORMAT1.format(date);
-
-            File file = new File(Environment.getExternalStorageDirectory(), String.format("PluginLog/CrashLog/CrashLog_%s_%s.log", dateStr, android.os.Process.myPid()));
-            if (!file.getParentFile().exists()) {
-                file.getParentFile().mkdirs();
-            }
-
-            if (!file.getParentFile().exists()) {
-                file.getParentFile().mkdirs();
-            }
-
-            if (file.exists()) {
-                file.delete();
-            }
-
-            writer = new PrintWriter(file);
-
-            writer.println("Date:" + SIMPLE_DATE_FORMAT.format(date));
-            writer.println("----------------------------------------System Infomation-----------------------------------");
-
-            String packageName = mContext.getPackageName();
-            writer.println("AppPkgName:" + packageName);
-            try {
-                PackageInfo packageInfo = mContext.getPackageManager().getPackageInfo(packageName, 0);
-                writer.println("VersionCode:" + packageInfo.versionCode);
-                writer.println("VersionName:" + packageInfo.versionName);
-                writer.println("Debug:" + (0 != (packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE)));
-            } catch (Exception e) {
-                writer.println("VersionCode:-1");
-                writer.println("VersionName:null");
-                writer.println("Debug:Unkown");
-            }
-
-            writer.println("PName:" + getProcessName());
-
-            try {
-                writer.println("imei:" + getIMEI(mContext));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } catch (Throwable e) {
-            Log.e(TAG, "记录uncaughtException", e);
-        } finally {
-            try {
-                if (writer != null) {
-                    writer.flush();
-                    writer.close();
-                }
-            } catch (Exception e) {
-            }
-
-            if (mOldHandler != null) {
-                mOldHandler.uncaughtException(thread, ex);
-            }
-        }
-    }
-
-    private String getIMEI(Context mContext) {
-        return "test";
-    }
-
-    public String getProcessName() {
-        ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-        List<RunningAppProcessInfo> infos = am.getRunningAppProcesses();
-        for (RunningAppProcessInfo info : infos) {
-            if (info.pid == android.os.Process.myPid()) {
-                return info.processName;
-            }
-        }
-        return null;
     }
 }
