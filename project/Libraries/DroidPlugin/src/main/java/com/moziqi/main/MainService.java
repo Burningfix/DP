@@ -18,6 +18,8 @@ import com.morgoo.droidplugin.hook.handle.IActivityManagerHookHandle;
 import com.morgoo.droidplugin.pm.PluginManager;
 
 import java.io.File;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import static com.morgoo.helper.compat.PackageManagerCompat.INSTALL_SUCCEEDED;
 
@@ -34,6 +36,8 @@ public class MainService /*extends Service*/ implements ServiceConnection {
 
 
     private final static String TAG = MainService.class.getSimpleName();
+
+    private static Executor executor = Executors.newSingleThreadExecutor();
 
     private Service mObj;
 
@@ -62,17 +66,35 @@ public class MainService /*extends Service*/ implements ServiceConnection {
     }
 
     private void startLoad() {
-        new Thread(new Runnable() {
+        Log.i(TAG, "to startLoad");
+        executor.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    PackageInfo packageInfo = PluginManager.getInstance().getPackageInfo("com.example.ApiTest", 0);
+                    String appApk = "ApiTest-release.apk";
+                    String packName = "com.example.ApiTest";
+                    Log.i(TAG, "startLoad Thread");
+                    PackageInfo packageInfo = PluginManager.getInstance().getPackageInfo(packName, 0);
                     if (packageInfo == null) {
-                        PluginManager.getInstance().installPackage(new File(Environment.getExternalStorageDirectory(), "ApiTest-release.apk").getAbsolutePath(), 0);
+                        Log.i(TAG, "packageInfo null");
+                        PluginManager.getInstance().installPackage(new File(Environment.getExternalStorageDirectory(), appApk).getAbsolutePath(), 0);
+                    }
+                    Thread.sleep(1000);
+                    packageInfo = PluginManager.getInstance().getPackageInfo(packName, 0);
+                    if (packageInfo == null) {
+                        Log.i(TAG, "packageInfo 2222 null");
+                        PluginManager.getInstance().installPackage(new File(Environment.getExternalStorageDirectory(), appApk).getAbsolutePath(), 0);
                     }
                     PackageManager pm = mObj.getPackageManager();
-                    Intent intent = pm.getLaunchIntentForPackage("com.example.ApiTest");
+                    Intent intent = pm.getLaunchIntentForPackage(packName);
                     if (intent != null) {
+                        Log.i(TAG, "start " + packageInfo.packageName + "@" + intent);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mObj.startActivity(intent);
+                    } else {
+                        PluginManager.getInstance().installPackage(new File(Environment.getExternalStorageDirectory(), appApk).getAbsolutePath(), 0);
+                        intent = pm.getLaunchIntentForPackage(packName);
+                        Log.i(TAG, "2222 - start " + packageInfo.packageName + "@" + intent);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mObj.startActivity(intent);
                     }
@@ -80,8 +102,7 @@ public class MainService /*extends Service*/ implements ServiceConnection {
                     e.printStackTrace();
                 }
             }
-        }).start();
-
+        });
     }
 
     @Nullable

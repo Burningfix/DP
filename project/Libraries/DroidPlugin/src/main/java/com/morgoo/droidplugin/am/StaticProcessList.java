@@ -119,7 +119,8 @@ class StaticProcessList {
         PackageInfo packageInfo = pm.getPackageInfo(mHostContext.getPackageName(), PackageManager.GET_PROVIDERS);
         if (packageInfo.providers != null && packageInfo.providers.length > 0) {
             for (ProviderInfo providerInfo : packageInfo.providers) {
-                if (providerInfo.name != null && providerInfo.name.startsWith(ContentProviderStub.class.getName())) {
+//                if (providerInfo.name != null && providerInfo.name.startsWith(ContentProviderStub.class.getName())) {
+                if (providerInfo.name != null && providerInfo.name.startsWith(PluginHelper.getInstance().getContentProviderStub().getName())) {
                     addProviderInfo(providerInfo);
                 }
             }

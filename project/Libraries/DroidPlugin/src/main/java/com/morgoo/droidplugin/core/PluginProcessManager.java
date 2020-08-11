@@ -241,13 +241,13 @@ public class PluginProcessManager {
                         ClassLoader classloader = null;
                         try {
 //                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, hostContext.getClassLoader().getParent());
-                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, PluginProcessManager.class.getClassLoader());
+                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, hostContext.getClassLoader().getParent());
                         } catch (Exception e) {
                         }
                         if (classloader == null) {
                             PluginDirHelper.cleanOptimizedDirectory(optimizedDirectory);
 //                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, hostContext.getClassLoader().getParent());
-                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, PluginProcessManager.class.getClassLoader());
+                            classloader = new PluginClassLoader(apk, optimizedDirectory, libraryPath, hostContext.getClassLoader().getParent());
                         }
                         synchronized (loadedApk) {
                             FieldUtils.writeDeclaredField(loadedApk, "mClassLoader", classloader);

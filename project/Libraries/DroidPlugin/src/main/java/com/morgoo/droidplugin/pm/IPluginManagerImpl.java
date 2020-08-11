@@ -925,7 +925,7 @@ public class IPluginManagerImpl extends IPluginManager.Stub {
         String optimizedDirectory = PluginDirHelper.getPluginDalvikCacheDir(hostContext, packageName);
         String libraryPath = PluginDirHelper.getPluginNativeLibraryDir(hostContext, packageName);
 //        ClassLoader classloader = new PluginClassLoader(apkfile, optimizedDirectory, libraryPath,hostContext.getClassLoader().getParent());
-        ClassLoader classloader = new PluginClassLoader(apkfile, optimizedDirectory, libraryPath, IPluginManagerImpl.class.getClassLoader());
+        ClassLoader classloader = new PluginClassLoader(apkfile, optimizedDirectory, libraryPath, hostContext.getClassLoader().getParent());
 //        DexFile dexFile = DexFile.loadDex(apkfile, PluginDirHelper.getPluginDalvikCacheFile(mContext, parser.getPackageName()), 0);
 //        Log.e(TAG, "dexFile=%s,1=%s,2=%s", dexFile, DexFile.isDexOptNeeded(apkfile), DexFile.isDexOptNeeded(PluginDirHelper.getPluginDalvikCacheFile(mContext, parser.getPackageName())));
     }

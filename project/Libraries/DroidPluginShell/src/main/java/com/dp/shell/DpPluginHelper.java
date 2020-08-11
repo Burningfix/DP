@@ -51,87 +51,100 @@ public class DpPluginHelper {
         createObj(baseContext);
     }
 
-    private void createObj(Context baseContext) {
+    private void createObj(Application baseContext) {
         if (mObj == null) {
             DpLoadUtils.copyAssetsFile(baseContext, DpLoadUtils.dexpath, DpLoadUtils.apkPath(baseContext));
             mObj = DpLoadUtils.load(baseContext, "com.morgoo.droidplugin.PluginHelper");
         }
         if (mObj != null) {
-            Object instance = null;
-            try {
-                Method getInstance = mObj.getClass().getDeclaredMethod("getInstance");
-                getInstance.setAccessible(true);
-                instance = getInstance.invoke(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            if (instance == null) {
-                return;
-            }
-            try {
-                Method method = instance.getClass().getDeclaredMethod("setPluginManagerService", Class.class);
-                method.setAccessible(true);
-                method.invoke(instance, DpPluginManagerService.class);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                Method method = instance.getClass().getDeclaredMethod("setMainService", Class.class);
-                method.setAccessible(true);
-                method.invoke(instance, DpMainService.class);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                Method method = instance.getClass().getDeclaredMethod("setPluginServiceProvider", Class.class);
-                method.setAccessible(true);
-                method.invoke(instance, DpPluginServiceProvider.class);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                Method method = instance.getClass().getDeclaredMethod("setShortcutProxyActivity", Class.class);
-                method.setAccessible(true);
-                method.invoke(instance, DpShortcutProxyActivity.class);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                Method method = instance.getClass().getDeclaredMethod("setOActivity", Class.class);
-                method.setAccessible(true);
-                method.invoke(instance, DpOActivity.class);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                Method method = instance.getClass().getDeclaredMethod("setServiceStub", Class.class);
-                method.setAccessible(true);
-                method.invoke(instance, DpServiceStub.class);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                Method method = instance.getClass().getDeclaredMethod("setActivityStub", Class.class);
-                method.setAccessible(true);
-                method.invoke(instance, DpActivityStub.class);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                Method method = instance.getClass().getDeclaredMethod("setActivityStubDialog", Class.class);
-                method.setAccessible(true);
-                method.invoke(instance, DpActivityStub.Dialog.class);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Object instance = baseInfoDeal();
+            if (instance == null) return;
             try {
                 Method method = instance.getClass().getDeclaredMethod("applicationOnCreate", Context.class);
                 method.setAccessible(true);
-                method.invoke(instance, baseContext);
+                method.invoke(instance, baseContext.getBaseContext());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private Object baseInfoDeal() {
+        Object instance = null;
+        try {
+            Method getInstance = mObj.getClass().getDeclaredMethod("getInstance");
+            getInstance.setAccessible(true);
+            instance = getInstance.invoke(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (instance == null) {
+            return null;
+        }
+        try {
+            Method method = instance.getClass().getDeclaredMethod("setPluginManagerService", Class.class);
+            method.setAccessible(true);
+            method.invoke(instance, DpPluginManagerService.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Method method = instance.getClass().getDeclaredMethod("setMainService", Class.class);
+            method.setAccessible(true);
+            method.invoke(instance, DpMainService.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Method method = instance.getClass().getDeclaredMethod("setPluginServiceProvider", Class.class);
+            method.setAccessible(true);
+            method.invoke(instance, DpPluginServiceProvider.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Method method = instance.getClass().getDeclaredMethod("setShortcutProxyActivity", Class.class);
+            method.setAccessible(true);
+            method.invoke(instance, DpShortcutProxyActivity.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Method method = instance.getClass().getDeclaredMethod("setOActivity", Class.class);
+            method.setAccessible(true);
+            method.invoke(instance, DpOActivity.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Method method = instance.getClass().getDeclaredMethod("setContentProviderStub", Class.class);
+            method.setAccessible(true);
+            method.invoke(instance, DpContentProviderStub.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Method method = instance.getClass().getDeclaredMethod("setServiceStub", Class.class);
+            method.setAccessible(true);
+            method.invoke(instance, DpServiceStub.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Method method = instance.getClass().getDeclaredMethod("setActivityStub", Class.class);
+            method.setAccessible(true);
+            method.invoke(instance, DpActivityStub.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Method method = instance.getClass().getDeclaredMethod("setActivityStubDialog", Class.class);
+            method.setAccessible(true);
+            method.invoke(instance, DpActivityStub.Dialog.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return instance;
     }
 
     private Object mObj;
@@ -143,9 +156,24 @@ public class DpPluginHelper {
     }
 
     public void applicationAttachBaseContext(Context baseContext) {
-        mContext = baseContext;
-        createObj(baseContext);
         Reflection.unseal(baseContext);
+        mContext = baseContext;
+        if (mObj == null) {
+            DpLoadUtils.copyAssetsFile(baseContext, DpLoadUtils.dexpath, DpLoadUtils.apkPath(baseContext));
+            mObj = DpLoadUtils.load(baseContext, "com.morgoo.droidplugin.PluginHelper");
+        }
+        if (mObj != null) {
+            Object instance = baseInfoDeal();
+            if (instance == null) return;
+            //这里不处理这个问题
+//            try {
+//                Method method = instance.getClass().getDeclaredMethod("applicationOnCreate", Context.class);
+//                method.setAccessible(true);
+//                method.invoke(instance, baseContext.getBaseContext());
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+        }
         DpCrashHandler.getInstance().register(baseContext);
     }
 }

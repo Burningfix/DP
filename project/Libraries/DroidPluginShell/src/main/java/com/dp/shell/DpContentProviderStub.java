@@ -25,32 +25,32 @@ package com.dp.shell;
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/2/12.
  */
-public abstract class ContentProviderStub extends DpAbstractContentProviderStub {
+public abstract class DpContentProviderStub extends DpAbstractContentProviderStub {
 
-    public static class StubP00 extends ContentProviderStub {
+    public static class StubP00 extends DpContentProviderStub {
     }
 
-    public static class StubP01 extends ContentProviderStub {
+    public static class StubP01 extends DpContentProviderStub {
     }
 
-    public static class StubP02 extends ContentProviderStub {
+    public static class StubP02 extends DpContentProviderStub {
     }
 
-    public static class StubP03 extends ContentProviderStub {
+    public static class StubP03 extends DpContentProviderStub {
     }
 
-    public static class StubP04 extends ContentProviderStub {
+    public static class StubP04 extends DpContentProviderStub {
     }
 
-    public static class StubP05 extends ContentProviderStub {
+    public static class StubP05 extends DpContentProviderStub {
     }
 
-    public static class StubP06 extends ContentProviderStub {
+    public static class StubP06 extends DpContentProviderStub {
     }
 
-    public static class StubP07 extends ContentProviderStub {
+    public static class StubP07 extends DpContentProviderStub {
     }
 
-    public static class StubP08 extends ContentProviderStub {
+    public static class StubP08 extends DpContentProviderStub {
     }
 }

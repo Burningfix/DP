@@ -44,6 +44,7 @@ import android.os.Looper;
 import android.os.RemoteException;
 import android.text.TextUtils;
 
+import com.morgoo.droidplugin.PluginHelper;
 import com.morgoo.droidplugin.core.Env;
 import com.morgoo.droidplugin.core.PluginProcessManager;
 import com.morgoo.droidplugin.pm.PluginManager;
@@ -58,16 +59,17 @@ import java.util.Set;
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/2/26.
  */
-public class AbstractContentProviderStub extends ContentProvider {
+public class AbstractContentProviderStub /*extends ContentProvider*/ {
 
     private static final String TAG = AbstractContentProviderStub.class.getSimpleName();
     private ContentResolver mContentResolver;
     private Map<String, ContentProviderClient> sContentProviderClients = new HashMap<String, ContentProviderClient>();
 
 
-    @Override
+//    @Override
     public boolean onCreate() {
-        mContentResolver = getContext().getContentResolver();
+//        mContentResolver = getContext().getContentResolver();
+        mContentResolver = PluginHelper.getInstance().getContext().getContentResolver();
         return true;
     }
 
@@ -107,7 +109,7 @@ public class AbstractContentProviderStub extends ContentProvider {
         ProviderInfo targetInfo = null;
         try {
             String authority = getMyAuthority();
-            stubInfo = getContext().getPackageManager().resolveContentProvider(authority, 0);
+            stubInfo = PluginHelper.getInstance().getContext().getPackageManager().resolveContentProvider(authority, 0);
             targetInfo = PluginManager.getInstance().resolveContentProvider(targetAuthority, 0);
         } catch (Exception e) {
             Log.e(TAG, "Can not reportMyProcessName on ContentProvider");
@@ -123,7 +125,7 @@ public class AbstractContentProviderStub extends ContentProvider {
 
         try {
             if (targetInfo != null) {
-                PluginProcessManager.preLoadApk(getContext(), targetInfo);
+                PluginProcessManager.preLoadApk(PluginHelper.getInstance().getContext(), targetInfo);
             }
         } catch (Exception e) {
             handleExpcetion(e);
@@ -148,7 +150,7 @@ public class AbstractContentProviderStub extends ContentProvider {
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
             return (String) FieldUtils.readField(this, "mAuthority");
         } else {
-            Context context = getContext();
+            Context context = PluginHelper.getInstance().getContext();
             PackageInfo pkgInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_PROVIDERS);
             if (pkgInfo != null && pkgInfo.providers != null && pkgInfo.providers.length > 0) {
                 for (ProviderInfo info : pkgInfo.providers) {
@@ -161,7 +163,7 @@ public class AbstractContentProviderStub extends ContentProvider {
         return null;
     }
 
-    @Override
+    //@Override
     public Cursor query(Uri uri, String[] projection,
                         String selection, String[] selectionArgs, String sortOrder) {
         String targetAuthority = uri.getQueryParameter(Env.EXTRA_TARGET_AUTHORITY);
@@ -181,7 +183,7 @@ public class AbstractContentProviderStub extends ContentProvider {
     }
 
 
-    @Override
+    //@Override
     public String getType(Uri uri) {
         String targetAuthority = uri.getQueryParameter(Env.EXTRA_TARGET_AUTHORITY);
         if (!TextUtils.isEmpty(targetAuthority) && !TextUtils.equals(targetAuthority, uri.getAuthority())) {
@@ -195,7 +197,7 @@ public class AbstractContentProviderStub extends ContentProvider {
         return null;
     }
 
-    @Override
+    //@Override
     public Uri insert(Uri uri, ContentValues contentValues) {
         String targetAuthority = uri.getQueryParameter(Env.EXTRA_TARGET_AUTHORITY);
         if (!TextUtils.isEmpty(targetAuthority) && !TextUtils.equals(targetAuthority, uri.getAuthority())) {
@@ -209,7 +211,7 @@ public class AbstractContentProviderStub extends ContentProvider {
         return null;
     }
 
-    @Override
+    //@Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         String targetAuthority = uri.getQueryParameter(Env.EXTRA_TARGET_AUTHORITY);
         if (!TextUtils.isEmpty(targetAuthority) && !TextUtils.equals(targetAuthority, uri.getAuthority())) {
@@ -223,7 +225,7 @@ public class AbstractContentProviderStub extends ContentProvider {
         return 0;
     }
 
-    @Override
+    //@Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
         String targetAuthority = uri.getQueryParameter(Env.EXTRA_TARGET_AUTHORITY);
@@ -239,7 +241,7 @@ public class AbstractContentProviderStub extends ContentProvider {
     }
 
     @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
-    @Override
+    //@Override
     public Bundle call(String method, String arg, Bundle extras) {
         String targetAuthority = extras != null ? extras.getString(Env.EXTRA_TARGET_AUTHORITY) : null;
         String targetMethod = extras != null ? extras.getString(Env.EXTRA_TARGET_AUTHORITY) : null;
@@ -251,11 +253,11 @@ public class AbstractContentProviderStub extends ContentProvider {
                 handleExpcetion(e);
             }
         }
-        return super.call(method, arg, extras);
+        return null;
     }
 
 
-    @Override
+    //@Override
     public int bulkInsert(Uri uri, ContentValues[] values) {
         String targetAuthority = uri.getQueryParameter(Env.EXTRA_TARGET_AUTHORITY);
         if (!TextUtils.isEmpty(targetAuthority) && !TextUtils.equals(targetAuthority, uri.getAuthority())) {
@@ -266,10 +268,10 @@ public class AbstractContentProviderStub extends ContentProvider {
                 handleExpcetion(e);
             }
         }
-        return super.bulkInsert(uri, values);
+        return 0;
     }
 
-    @Override
+    //@Override
     public ContentProviderResult[] applyBatch(ArrayList<ContentProviderOperation> operations) throws OperationApplicationException {
 //TODO applyBatch转发
 //        if (operations != null && operations.size() > 0) {
@@ -314,7 +316,7 @@ public class AbstractContentProviderStub extends ContentProvider {
 //
 //            }
 //        }
-        return super.applyBatch(operations);
+        return null;
     }
 
 

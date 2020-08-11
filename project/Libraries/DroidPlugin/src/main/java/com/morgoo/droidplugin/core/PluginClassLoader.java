@@ -37,7 +37,7 @@ import dalvik.system.DexClassLoader;
 public class PluginClassLoader extends DexClassLoader {
 
     public PluginClassLoader(String apkfile, String optimizedDirectory, String libraryPath, ClassLoader systemClassLoader) {
-        super(apkfile, optimizedDirectory, libraryPath, systemClassLoader);
+        super(apkfile, optimizedDirectory, libraryPath, PluginClassLoader.class.getClassLoader());
     }
 
     private static final List<String> sPreLoader = new ArrayList<>();

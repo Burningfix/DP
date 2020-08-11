@@ -47,7 +47,7 @@ public class PluginHelper implements ServiceConnection {
 
     private static final String TAG = PluginHelper.class.getSimpleName();
 
-    private static PluginHelper sInstance = null;
+    private volatile static PluginHelper sInstance = null;
 
     public PluginHelper() {
     }
@@ -196,6 +196,7 @@ public class PluginHelper implements ServiceConnection {
     private Class pluginServiceProvider;
     private Class shortcutProxyActivity;
     private Class oActivity;
+    private Class contentProviderStub;
     private Class serviceStub;
     private Class activityStub;
     private Class activityStubDialog;
@@ -238,6 +239,14 @@ public class PluginHelper implements ServiceConnection {
 
     public void setOActivity(Class oActivity) {
         this.oActivity = oActivity;
+    }
+
+    public Class getContentProviderStub() {
+        return contentProviderStub;
+    }
+
+    public void setContentProviderStub(Class contentProviderStub) {
+        this.contentProviderStub = contentProviderStub;
     }
 
     public Class getServiceStub() {

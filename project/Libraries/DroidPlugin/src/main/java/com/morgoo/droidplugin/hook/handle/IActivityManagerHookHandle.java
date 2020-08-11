@@ -2136,8 +2136,6 @@ public class IActivityManagerHookHandle extends BaseHookHandle {
             if (intent != null) {
                 ActivityInfo proxyInfo = PluginManager.getInstance().selectStubActivityInfo(intent);
                 if (proxyInfo != null) {
-                    android.util.Log.i("moziqi", "proxyInfo.packageName:" + proxyInfo.packageName);
-                    android.util.Log.i("moziqi", "proxyInfo.name:" + proxyInfo.name);
                     return new ComponentName(proxyInfo.packageName, proxyInfo.name);
                 }
             }

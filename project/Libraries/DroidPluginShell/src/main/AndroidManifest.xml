@@ -705,7 +705,7 @@
             </intent-filter>
         </service>
         <provider
-            android:name="com.dp.shell.ContentProviderStub$StubP00"
+            android:name="com.dp.shell.DpContentProviderStub$StubP00"
             android:authorities="${authorityName}_P00"
             android:exported="false"
             android:label="@string/stub_name_povider" />
@@ -1195,7 +1195,7 @@
             </intent-filter>
         </service>
         <provider
-            android:name="com.dp.shell.ContentProviderStub$StubP01"
+            android:name="com.dp.shell.DpContentProviderStub$StubP01"
             android:authorities="${authorityName}_P01"
             android:exported="false"
             android:label="@string/stub_name_povider"
@@ -1683,7 +1683,7 @@
             </intent-filter>
         </service>
         <provider
-            android:name="com.dp.shell.ContentProviderStub$StubP02"
+            android:name="com.dp.shell.DpContentProviderStub$StubP02"
             android:authorities="${authorityName}_P02"
             android:exported="false"
             android:label="@string/stub_name_povider"
@@ -2173,7 +2173,7 @@
             </intent-filter>
         </service>
         <provider
-            android:name="com.dp.shell.ContentProviderStub$StubP03"
+            android:name="com.dp.shell.DpContentProviderStub$StubP03"
             android:authorities="${authorityName}_P03"
             android:exported="false"
             android:label="@string/stub_name_povider"
@@ -2662,7 +2662,7 @@
             </intent-filter>
         </service>
         <provider
-            android:name="com.dp.shell.ContentProviderStub$StubP04"
+            android:name="com.dp.shell.DpContentProviderStub$StubP04"
             android:authorities="${authorityName}_P04"
             android:exported="false"
             android:label="@string/stub_name_povider"
@@ -3150,7 +3150,7 @@
             </intent-filter>
         </service>
         <provider
-            android:name="com.dp.shell.ContentProviderStub$StubP05"
+            android:name="com.dp.shell.DpContentProviderStub$StubP05"
             android:authorities="${authorityName}_P05"
             android:exported="false"
             android:label="@string/stub_name_povider"
@@ -3640,7 +3640,7 @@
             </intent-filter>
         </service>
         <provider
-            android:name="com.dp.shell.ContentProviderStub$StubP06"
+            android:name="com.dp.shell.DpContentProviderStub$StubP06"
             android:authorities="${authorityName}_P06"
             android:exported="false"
             android:label="@string/stub_name_povider"
@@ -4132,7 +4132,7 @@
                 android:value="0" />
         </service>
         <provider
-            android:name="com.dp.shell.ContentProviderStub$StubP07"
+            android:name="com.dp.shell.DpContentProviderStub$StubP07"
             android:authorities="${authorityName}_P07"
             android:exported="false"
             android:label="@string/stub_name_povider"
@@ -4621,7 +4621,7 @@
             </intent-filter>
         </service>
         <provider
-            android:name="com.dp.shell.ContentProviderStub$StubP08"
+            android:name="com.dp.shell.DpContentProviderStub$StubP08"
             android:authorities="${authorityName}_P08"
             android:exported="false"
             android:label="@string/stub_name_povider"

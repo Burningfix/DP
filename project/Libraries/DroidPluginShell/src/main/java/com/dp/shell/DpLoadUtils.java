@@ -33,7 +33,7 @@ public class DpLoadUtils {
             file.mkdirs();
         }
         if (dexClassLoader == null) {
-            dexClassLoader = new DpClassLoader(apkPath(context), out, null, DpLoadUtils.class.getClassLoader());
+            dexClassLoader = new DpClassLoader(apkPath(context), out, null, context.getClassLoader());
         }
         if (dexClassLoader != null) {
             try {
